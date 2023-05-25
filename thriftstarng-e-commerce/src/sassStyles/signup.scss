@@ -1,0 +1,67 @@
+@import "./variables";
+
+.signUp {
+  display: grid;
+  gap: 4rem;
+  align-content: center;
+  min-height: 100vh;
+
+  &Header {
+    text-align: center;
+  }
+
+  &Body {
+    display: grid;
+    gap: 2%;
+
+    .signUpForm {
+      box-shadow: 0px 2px 5px -2px grey;
+      display: grid;
+      justify-content: center;
+      width: min(25rem, 100%);
+      justify-self: center;
+      gap: 1rem;
+      padding: 2rem;
+
+      input {
+        @include inputField;
+        padding-block: 0.5rem;
+      }
+
+      .passShow {
+        display: flex;
+        border: 1px solid grey;
+
+        input {
+          border: none;
+        }
+
+        button {
+          align-self: center;
+          padding-inline: 0.5rem;
+          font-size: 12px;
+          font-weight: 600;
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 23px;
+          display: grid;
+          color: $secondary;
+        }
+      }
+
+      .signUpBtn {
+        @include buttonsStyles($primary);
+        padding-block: 0.6rem;
+        border-radius: 5px;
+      }
+
+      .elseSignUp {
+        text-align: center;
+        a {
+          color: $primary;
+        }
+      }
+    }
+  }
+}

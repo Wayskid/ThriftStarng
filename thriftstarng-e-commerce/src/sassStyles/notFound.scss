@@ -1,0 +1,27 @@
+@import "./variables";
+
+.notFound {
+  padding: 6rem 1rem 2rem 1rem;
+  display: grid;
+  width: min(70rem, 100%);
+  justify-self: center;
+  min-height: 100vh;
+  gap: 1rem;
+  align-content: center;
+  text-align: center;
+
+  h1 {
+    font-size: 60px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  a {
+    @include buttonsStyles($primary);
+    width: fit-content;
+    justify-self: center;
+    padding: 1rem;
+  }
+}

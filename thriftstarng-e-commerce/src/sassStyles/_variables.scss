@@ -1,0 +1,200 @@
+/* Media Query */
+$desktop: 768px;
+$tablet: 481px;
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+
+/*Font Size*/
+@mixin headerText {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/*Colors*/
+$primary: #c930a0;
+$purple: #7303c0;
+$secondary: #06003a;
+
+@mixin color_gradient {
+  background: #d232a7;
+  background: -webkit-linear-gradient(to right, #d232a7, #7303c0, #06003a);
+  background: linear-gradient(to right, #d232a7, #7303c0, #06003a);
+}
+
+@mixin logo {
+  font-family: "Bruno Ace SC", cursive;
+  font-size: 23px;
+
+  & > * {
+    font-family: "Pacifico", cursive;
+  }
+}
+
+/*Buttons*/
+@mixin buttonsStyles($color) {
+  $hover-color: scale-color(#ba59d0, $lightness: 3%);
+
+  background-color: $color;
+  border: none;
+  padding-inline: 0.5rem;
+  cursor: pointer;
+  color: white;
+  font-family: inherit;
+  border-radius: 5px;
+  font-size: 14px;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-color;
+    transition: all ease-in 0.2s;
+  }
+
+  &.buttonLoad {
+    display: flex;
+    justify-content: center;
+
+    &:disabled {
+      background-color: #ba59d0;
+      cursor: default;
+    }
+
+    p {
+      translate: -80% 0;
+      opacity: 0.5;
+      transition: all 0.8s ease;
+    }
+
+    .loader {
+      opacity: 1;
+      translate: 80% 0;
+      transition: all 1.8s ease;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    user-select: none;
+  }
+}
+
+/*Input Field*/
+@mixin inputField {
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  padding: 0.1rem 0.4rem;
+  font-size: 15px;
+  border: 1px solid rgb(170, 168, 168);
+  border-radius: 3px;
+
+  &:focus {
+    border-color: #d232a7;
+  }
+}
+
+/*Shop List Style*/
+
+@mixin shopListStyle {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  justify-self: center;
+  gap: 1.5rem;
+
+  .itemCard {
+    display: grid;
+    justify-items: center;
+    color: $secondary;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0px 1px 5px 1px rgba(128, 128, 128, 0.13);
+    overflow: hidden;
+
+    &:hover .itemCardTop {
+      translate: 0 -1.5rem;
+    }
+
+    &:hover .addToWishlistBtn {
+      opacity: 1;
+      right: 0.3rem;
+    }
+
+    &Top {
+      transition: 0.4s ease;
+      z-index: 2;
+      display: grid;
+      gap: 0.5rem;
+      background-color: white;
+      padding-bottom: 0.5rem;
+
+      a {
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .itemCardDetailsWrap {
+        text-align: center;
+
+        .nameSize {
+          display: flex;
+          justify-content: center;
+          gap: 0.2rem;
+          .itemCategory {
+            font-style: italic;
+          }
+        }
+
+        .price {
+          font-size: 20px;
+          text-align: center;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    .addToCartBtn {
+      position: absolute;
+      bottom: 0;
+      z-index: -1;
+      padding-block: 0.2rem;
+      background: none;
+      border: none;
+      font-size: 17px;
+      color: $primary;
+      cursor: pointer;
+      justify-self: center;
+
+      &:hover {
+        color: $purple;
+      }
+    }
+
+    .addToWishlistBtn {
+      position: absolute;
+      top: 0.4rem;
+      right: -1rem;
+      background: none;
+      border: none;
+      font-size: 30px;
+      opacity: 0;
+      color: rgb(73, 71, 71);
+      z-index: 3;
+      transition: 0.3s ease;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}

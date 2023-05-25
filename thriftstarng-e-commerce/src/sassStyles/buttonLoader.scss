@@ -1,0 +1,50 @@
+@import "./variables";
+
+$animation-duration: 1.8s;
+
+.loader {
+  align-self: center;
+  width: 30px;
+  height: 3px;
+  background: $purple;
+  border-radius: 5px;
+  animation: load $animation-duration ease-in-out infinite;
+
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    content: "";
+    animation: load $animation-duration ease-in-out infinite;
+    height: 2.5px;
+    border-radius: 5px;
+  }
+
+  &:before {
+    top: -6.5px;
+    height: 2.3px;
+    left: 10px;
+    width: 25px;
+    background: rgb(219, 213, 213);
+    animation-delay: 0.2s;
+  }
+
+  &:after {
+    bottom: -6.5px;
+    width: 30px;
+    background: rgb(219, 213, 213);
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: translateX(20px);
+  }
+
+  50% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(20px);
+  }
+}

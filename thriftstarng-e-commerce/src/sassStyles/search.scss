@@ -1,0 +1,69 @@
+@import "./variables";
+
+.search {
+  position: fixed;
+  height: calc(100% - 70px);
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  display: none;
+  align-content: baseline;
+  z-index: 4;
+
+  &Top {
+    border-bottom: 2px solid $primary;
+    padding: 1.5rem 1rem;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    display: grid;
+    align-content: center;
+    text-align: center;
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    .searchBtnInput {
+      display: flex;
+      border: 1px solid $secondary;
+      width: min(20rem, 100%);
+      padding: 0.2rem;
+      gap: 0.3rem;
+      border-radius: 5px;
+
+      input {
+        @include inputField;
+        padding-block: 0.4rem;
+        border: none;
+        font-size: 17px
+      }
+
+      .searchBtn {
+        @include buttonsStyles($primary);
+        padding: 0.4rem 1rem;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .searchResult {
+    padding: 1rem;
+    justify-self: center;
+    min-height: 20rem;
+    overflow-y: auto;
+    width: 100%;
+    display: grid;
+    
+    p, h1{
+      text-align: center
+    }
+    
+    .shopList {
+      @include shopListStyle;
+      width: min(70rem, 95%);
+      padding-bottom: 5rem;
+    }
+  }
+}

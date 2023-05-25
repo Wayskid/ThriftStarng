@@ -1,0 +1,94 @@
+@import "./variables";
+
+.filter {
+  display: none;
+  gap: 1rem;
+  position: absolute;
+  bottom: 0;
+  z-index: 4;
+  background-color: white;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 70px);
+  align-content: baseline;
+  padding: 1rem 2rem;
+
+  .category,
+  .sort {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1rem;
+
+    & > :first-child {
+      margin-bottom: 1rem;
+    }
+
+    input {
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #fff;
+      margin: 0;
+      font: inherit;
+      color: currentColor;
+      width: 1.15em;
+      height: 1.15em;
+      border: 0.1em solid currentColor;
+      border-radius: 50%;
+      transform: translateY(0.075em);
+      display: grid;
+      place-content: center;
+    }
+
+    input::before {
+      content: "";
+      width: 0.65em;
+      height: 0.65em;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em $primary;
+    }
+
+    input:checked::before {
+      transform: scale(1);
+    }
+
+    label {
+      font-size: 18px;
+      display: flex;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+  }
+
+  .sort {
+    border-top: 2px solid rgba(128, 128, 128, 0.455);
+  }
+
+  .filterBtns {
+    width: min(30rem, 100%);
+    display: flex;
+    gap: 1rem;
+
+    & > * {
+      flex-grow: 1;
+      padding: 1rem;
+      @include buttonsStyles($primary);
+    }
+
+    .clearBtn {
+      @include buttonsStyles($secondary);
+    }
+  }
+
+  .closeFilter {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: $primary;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,71 @@
+@import "./variables";
+
+.footer {
+  background-color: $secondary;
+  color: #ffffff;
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+
+  @include desktop {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 0rem;
+  }
+
+  &Logo {
+    @include logo;
+    font-size: 40px;
+  }
+
+  &Right{
+    display: grid;
+    gap: 2rem;
+    
+    @include tablet{
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+    }
+  }
+
+  .socials {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+    
+    @include tablet{
+        justify-items: left;
+    }
+    
+    .social {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        font-size: 14px;
+        
+        & > :first-child {
+        font-size: 25px;
+      }
+    }
+  }
+
+  &Links {
+    display: grid;
+    gap: 0.5rem;
+    font-size: 13px;
+    align-self: center;
+    text-align: center;
+
+    @include tablet{
+        text-align: left;
+    }
+  }
+
+  &Det {
+    font-size: 11px;
+    text-align: center;
+  }
+}
