@@ -14,7 +14,7 @@ const app = express();
 app.use(json());
 
 const corsOrigin = {
-  origin: "http://localhost:5173",
+  origin: "https://thriftstarng.netlify.app",
   credentials: true,
   optionSuccessStatus: 200,
 };
