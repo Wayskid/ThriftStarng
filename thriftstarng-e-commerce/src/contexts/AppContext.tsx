@@ -39,7 +39,9 @@ export function AppProvider({
         type: REDUCER_ACTION_TYPES.LOADING,
         payload: true,
       });
-      const { data } = await axios.get("/api/products");
+      const { data } = await axios.get(
+        "https://thriftstarng.onrender.com/api/products"
+      );
       dispatch({
         type: REDUCER_ACTION_TYPES.GET_PRODUCTS_LIST,
         payload: data,
@@ -60,7 +62,9 @@ export function AppProvider({
         type: REDUCER_ACTION_TYPES.LOADING,
         payload: true,
       });
-      const { data } = await axios.get(`/api/products/${id}`);
+      const { data } = await axios.get(
+        `https://thriftstarng.onrender.com/api/products/${id}`
+      );
       dispatch({
         type: REDUCER_ACTION_TYPES.GET_SINGLE_PRODUCT,
         payload: data,
@@ -83,7 +87,9 @@ export function AppProvider({
 
   //Add to Cart
   async function addToCart(qty: Number, id: String) {
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(
+      `https://thriftstarng.onrender.com/api/products/${id}`
+    );
 
     if (cartList.find((item) => item.product === id)) {
       //DO already added alert and icon should change
@@ -106,7 +112,9 @@ export function AppProvider({
 
   //Add to Wishlist
   async function addToWish(qty: Number, id: String) {
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(
+      `https://thriftstarng.onrender.com/api/products/${id}`
+    );
 
     if (wishList.find((item) => item.product === id)) {
       //DO already added alert and icon should change
@@ -144,7 +152,7 @@ export function AppProvider({
       };
 
       const { data } = await axios.post(
-        "/api/users",
+        "https://thriftstarng.onrender.com/api/users",
         {
           name: signUpInputs.name,
           email: signUpInputs.email,
@@ -178,7 +186,7 @@ export function AppProvider({
       };
 
       const { data } = await axios.post(
-        "/api/users/signIn",
+        "https://thriftstarng.onrender.com/api/users/signIn",
         {
           email: signInInputs.email,
           password: signInInputs.password,
@@ -241,7 +249,7 @@ export function AppProvider({
       };
 
       const { data } = await axios.post(
-        "/api/orders",
+        "https://thriftstarng.onrender.com/api/orders",
         {
           orderItems: cartList,
           userInfo: {
@@ -322,7 +330,9 @@ export function AppProvider({
           type: REDUCER_ACTION_TYPES.LOADING,
           payload: true,
         });
-        const { data } = await axios.get(`/api/products?s=${searchVal.trim()}`);
+        const { data } = await axios.get(
+          `https://thriftstarng.onrender.com/api/products?s=${searchVal.trim()}`
+        );
 
         dispatch({
           type: REDUCER_ACTION_TYPES.LOADING,
@@ -346,7 +356,7 @@ export function AppProvider({
 
     try {
       const { data } = await axios.get(
-        `/api/products?c=${
+        `https://thriftstarng.onrender.com/api/products?c=${
           state.productFilterSort.category === "All"
             ? ""
             : state.productFilterSort.category
