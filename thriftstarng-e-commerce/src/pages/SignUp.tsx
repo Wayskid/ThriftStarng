@@ -1,4 +1,4 @@
-import "../sassStyles/signUp.scss";
+import "../sassStyles/signup.scss"
 import { ChangeEvent, useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
