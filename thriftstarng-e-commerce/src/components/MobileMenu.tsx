@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 
 export default function MobileMenu() {
-  const { dispatch, state, signOut } =
-    useContext(AppContext);
+  const { dispatch, state, signOut } = useContext(AppContext);
   const location = useLocation();
 
   // Active Link
@@ -81,9 +80,7 @@ export default function MobileMenu() {
           <Link
             to="/signIn"
             className={`${pathMatch("/signIn") && "activeNavLeft"}`}
-            onClick={() =>
-              dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH })
-            }
+            onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
           >
             Sign In
           </Link>
@@ -92,7 +89,7 @@ export default function MobileMenu() {
             to="/signIn"
             className={`${pathMatch("/signIn") && "activeNavLeft"}`}
             onClick={() => {
-              dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH });
+              dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU });
               signOut();
             }}
           >
@@ -102,18 +99,14 @@ export default function MobileMenu() {
         <Link
           to="/new_arrivals"
           className={`${pathMatch("/new_arrivals") && "activeNavLeft"}`}
-          onClick={() =>
-            dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH })
-          }
+          onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
         >
           New Arrivals
         </Link>
         <Link
           to="/sales"
           className={`${pathMatch("/sales") && "activeNavLeft"}`}
-          onClick={() =>
-            dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH })
-          }
+          onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
         >
           Sales
         </Link>
