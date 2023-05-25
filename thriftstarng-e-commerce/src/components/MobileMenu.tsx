@@ -70,7 +70,7 @@ export default function MobileMenu() {
     >
       <div
         className="rightMobileMenu"
-        onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_MENU })}
+        onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
       ></div>
       <motion.div
         className="mobileLinksWrapper"
@@ -82,7 +82,7 @@ export default function MobileMenu() {
             to="/signIn"
             className={`${pathMatch("/signIn") && "activeNavLeft"}`}
             onClick={() =>
-              dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH })
+              dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH })
             }
           >
             Sign In
@@ -92,7 +92,7 @@ export default function MobileMenu() {
             to="/signIn"
             className={`${pathMatch("/signIn") && "activeNavLeft"}`}
             onClick={() => {
-              dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH });
+              dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH });
               signOut();
             }}
           >
@@ -103,7 +103,7 @@ export default function MobileMenu() {
           to="/new_arrivals"
           className={`${pathMatch("/new_arrivals") && "activeNavLeft"}`}
           onClick={() =>
-            dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH })
+            dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH })
           }
         >
           New Arrivals
@@ -112,7 +112,7 @@ export default function MobileMenu() {
           to="/sales"
           className={`${pathMatch("/sales") && "activeNavLeft"}`}
           onClick={() =>
-            dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH })
+            dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH })
           }
         >
           Sales
