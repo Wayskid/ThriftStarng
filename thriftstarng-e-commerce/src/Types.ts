@@ -12,7 +12,15 @@ export interface ProductType {
   stockCount: number;
 }
 
-export type CartType = ProductType & {
+export type CartType = {
+  _id: string;
+  color: String;
+  description: String;
+  image: string;
+  name: String;
+  price: number;
+  size: String;
+  stockCount: number;
   product: String;
   qty: number;
 };

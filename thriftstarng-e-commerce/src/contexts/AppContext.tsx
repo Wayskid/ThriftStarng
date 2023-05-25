@@ -6,7 +6,7 @@ import {
   useReducer,
 } from "react";
 import { AppReducer } from "../reducers/AppReducer";
-import { CartType, UseAppContextType } from "../Types";
+import { UseAppContextType } from "../Types";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import axios from "axios";
 import moment from "moment";
@@ -389,14 +389,15 @@ export function AppProvider({
     localStorage.setItem("billingDetails", JSON.stringify(billingDetails));
 
     //Calculate cart total
+    let total = 0;
+
+    state.cartList.forEach((item) => {
+      total += item.qty * item.price;
+    });
+
     dispatch({
       type: REDUCER_ACTION_TYPES.CALC_TOTAL,
-      payload: cartList.reduce(
-        (accumulator: number, object: CartType): Number => {
-          return accumulator + object.qty * object.price;
-        },
-        0
-      ),
+      payload: total,
     });
 
     //Body Scroll

@@ -3,6 +3,8 @@ import AppContext from "../contexts/AppContext";
 
 export default function OrderSummary() {
   const { state } = useContext(AppContext);
+
+  
   
   return (
     <div className="orderSummaryWrap">

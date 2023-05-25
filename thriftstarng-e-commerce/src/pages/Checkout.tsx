@@ -20,7 +20,7 @@ export default function Checkout() {
       type: REDUCER_ACTION_TYPES.PAGE_TITLE,
       payload: "Checkout - ThriftStarng",
     });
-  }, [state.pageTitle]);
+  }, [state.pageTitle, state.cartList, dispatch]);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
