@@ -1,0 +1,73 @@
+@import "./variables";
+
+/*Mobile Menu*/
+.mobileMenu {
+  background-color: rgba(87, 85, 85, 0.304);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  font-size: 25px;
+  z-index: 6;
+
+  @include desktop {
+    display: none;
+  }
+
+  .rightMobileMenu {
+    width: 100%;
+  }
+
+  .leftMobileMenu {
+    position: absolute;
+    width: min(20rem, 70%);
+    height: 100%;
+    display: grid;
+    align-content: space-between;
+    background-color: white;
+    padding: 5rem 1.5rem;
+
+    .menuLinks {
+      display: grid;
+      gap: 2rem;
+      .mobileSearchBtn {
+        cursor: pointer;
+      }
+    }
+
+    .socialsLinks {
+      display: grid;
+      gap: 2rem;
+      margin-top: auto;
+      font-size: 35px;
+
+      & > * {
+        cursor: pointer;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+
+    .closeMenuBtn {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.8rem;
+      background: none;
+      border: none;
+      font-size: 40px;
+      cursor: pointer;
+    }
+  }
+}

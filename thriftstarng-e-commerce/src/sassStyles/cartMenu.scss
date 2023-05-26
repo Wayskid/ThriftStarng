@@ -1,0 +1,131 @@
+@import "./variables";
+
+.cartMenu {
+  background-color: rgba(87, 85, 85, 0.304);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  z-index: 6;
+  overflow: hidden;
+
+  .leftCartMenu {
+    width: 100%;
+  }
+
+  .rightCartMenu {
+    position: absolute;
+    width: min(20rem, 70%);
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: grid;
+    gap: 0.7rem;
+    background-color: $purple;
+    background-color: white;
+    align-content: start;
+    padding-block: 3.5rem 4rem;
+
+    .cartMenuHeader {
+      padding-left: 0.6rem;
+    }
+
+    .cartMenuList {
+      display: grid;
+      height: calc(100vh - (4 * 5rem));
+      overflow: auto;
+      align-content: start;
+      border-top: 1px solid rgba(38, 38, 38, 0.539);
+
+      .cartMenuItem {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 0.5rem;
+        padding: 0.4rem 0.6rem;
+        align-items: center;
+        position: relative;
+        border-bottom: 1px solid rgba(38, 38, 38, 0.539);
+
+        .imgWrap {
+          display: grid;
+
+          img {
+            width: 100%;
+            height: 4.5rem;
+            border-radius: 5px;
+            object-fit: cover;
+          }
+        }
+
+        &Mid {
+          display: grid;
+          font-size: 14px;
+          align-items: center;
+          height: 100%;
+
+          .amount {
+            display: flex;
+            gap: 0.5rem;
+          }
+        }
+
+        .deleteCartMenuItemBtn {
+          position: absolute;
+          top: 0.2rem;
+          right: 0.1rem;
+          background: none;
+          border: none;
+          color: $secondary;
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .total {
+      border-radius: 5px;
+      padding: 0.6rem;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cartMenuBtns {
+      display: grid;
+      gap: 0.2rem;
+      padding-inline: 0.6rem;
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+
+      .cartMenuViewCartBtn {
+        @include buttonsStyles($primary);
+        padding: 0.8rem;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .cartMenuCheckoutBtn {
+        @extend .cartMenuViewCartBtn;
+        @include buttonsStyles($secondary);
+      }
+    }
+
+    .closeCartBtn {
+      font-size: 40px;
+      position: absolute;
+      top: 0.2rem;
+      left: 0.1rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: $secondary;
+    }
+  }
+}

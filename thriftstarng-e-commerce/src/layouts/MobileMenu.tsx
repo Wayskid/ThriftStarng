@@ -1,3 +1,4 @@
+import "../sassStyles/cartMenu.scss";
 import { Link, useLocation } from "react-router-dom";
 import { BsFacebook, BsInstagram, BsWhatsapp, BsX } from "react-icons/bs";
 import { useContext, useEffect } from "react";
@@ -85,7 +86,9 @@ export default function MobileMenu() {
             <Link
               to="/signIn"
               className={`${pathMatch("/signIn") && "activeNavLeft"}`}
-              onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
+              onClick={() =>
+                dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })
+              }
             >
               Sign In
             </Link>

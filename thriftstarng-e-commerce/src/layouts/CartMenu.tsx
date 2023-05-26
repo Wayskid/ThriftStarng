@@ -1,4 +1,4 @@
-import "../sassStyles/nav.scss";
+import "../sassStyles/cartMenu.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { BsX } from "react-icons/bs";
 import { useContext, useEffect } from "react";
