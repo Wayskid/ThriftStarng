@@ -18,6 +18,8 @@ import Checkout from "./pages/Checkout";
 import ScrollToTop from "./pages/ScrollToTop";
 import AppContext from "./contexts/AppContext";
 import Filter from "./layouts/Filter";
+import CartMenu from "./layouts/CartMenu";
+import MobileMenu from "./layouts/MobileMenu";
 
 function App() {
   const { state } = useContext(AppContext);
@@ -52,8 +54,10 @@ function App() {
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
+      <MobileMenu />
+      <CartMenu />
       <Search />
-      <Filter/>
+      <Filter />
     </div>
   );
 }

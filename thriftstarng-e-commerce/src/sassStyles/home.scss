@@ -5,7 +5,7 @@
   justify-self: center;
   display: grid;
   color: $secondary;
-  min-height: 100vh;
+  min-height: 100%;
   align-content: baseline;
 
   .showcase {
@@ -79,6 +79,7 @@
       border: none;
       font-size: 17px;
       cursor: pointer;
+      color: $secondary;
 
       span {
         font-size: 25px;

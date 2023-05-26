@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 5;
   align-content: center;
 
   &Main {
@@ -174,44 +174,45 @@
 .mobileMenu {
   background-color: rgba(87, 85, 85, 0.304);
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   opacity: 0;
   visibility: hidden;
   display: flex;
   font-size: 25px;
+  z-index: 6;
 
   @include desktop {
     display: none;
   }
 
   .rightMobileMenu {
-    height: 100%;
-    width: calc(100% - 20rem);
-    order: 2;
+    width: 100%;
   }
 
-  .mobileLinksWrapper {
-    position: relative;
+  .leftMobileMenu {
+    position: absolute;
     width: min(20rem, 70%);
     height: 100%;
     display: grid;
-    gap: 5%;
-    align-content: baseline;
+    align-content: space-between;
     background-color: white;
-    padding: 20% 3%;
-    // color: $secondary;
+    padding: 5rem 1.5rem;
 
-    .mobileSearchBtn {
-      cursor: pointer;
-    }
-
-    .socialsMenu {
+    .menuLinks {
       display: grid;
       gap: 2rem;
-      margin-top: 10%;
+      .mobileSearchBtn {
+        cursor: pointer;
+      }
+    }
+
+    .socialsLinks {
+      display: grid;
+      gap: 2rem;
+      margin-top: auto;
       font-size: 35px;
 
       & > * {
@@ -225,7 +226,7 @@
       }
 
       p {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
 
@@ -245,22 +246,25 @@
 .cartMenu {
   background-color: rgba(87, 85, 85, 0.304);
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 0;
   right: 0;
-  height: 100vh;
+  height: 100%;
   opacity: 0;
   visibility: hidden;
   display: flex;
+  z-index: 6;
+  overflow: hidden;
 
   .leftCartMenu {
-    height: 100%;
-    width: calc(100% - 19rem);
+    width: 100%;
   }
 
-  .cartMenuWrapper {
-    position: relative;
-    width: min(19rem, 90%);
+  .rightCartMenu {
+    position: absolute;
+    width: min(20rem, 70%);
+    top: 0;
+    right: 0;
     height: 100%;
     display: grid;
     gap: 0.7rem;
@@ -270,7 +274,7 @@
     padding-block: 3.5rem 4rem;
 
     .cartMenuHeader {
-      margin-left: 0.6rem;
+      padding-left: 0.6rem;
     }
 
     .cartMenuList {
@@ -318,7 +322,7 @@
           right: 0.1rem;
           background: none;
           border: none;
-          // color: white;
+          color: $secondary;
           font-size: 20px;
           cursor: pointer;
         }
@@ -337,7 +341,10 @@
     .cartMenuBtns {
       display: grid;
       gap: 0.2rem;
-      margin-inline: 0.6rem;
+      padding-inline: 0.6rem;
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
 
       .cartMenuViewCartBtn {
         @include buttonsStyles($primary);
@@ -346,7 +353,7 @@
         text-align: center;
         font-size: 14px;
       }
-      
+
       .cartMenuCheckoutBtn {
         @extend .cartMenuViewCartBtn;
         @include buttonsStyles($secondary);
@@ -354,14 +361,14 @@
     }
 
     .closeCartBtn {
-      font-size: 35px;
+      font-size: 40px;
       position: absolute;
       top: 0.2rem;
       left: 0.1rem;
       cursor: pointer;
       background: none;
       border: none;
-      // color: white;
+      color: $secondary;
     }
   }
 }

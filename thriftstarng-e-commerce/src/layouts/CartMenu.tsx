@@ -14,11 +14,11 @@ export default function CartMenu() {
   // Animations
 
   const cartMenu: {} = {
-    showCartWrap: {
+    showCart: {
       opacity: 1,
       visibility: "visible",
     },
-    hideCartWrap: {
+    hideCart: {
       opacity: 0,
       transitionEnd: {
         visibility: "hidden",
@@ -27,7 +27,7 @@ export default function CartMenu() {
   };
 
   const cartWrap = {
-    showCart: {
+    showCartMenu: {
       translateX: 0,
       opacity: 1,
       transition: {
@@ -38,7 +38,7 @@ export default function CartMenu() {
       },
     },
 
-    hideCart: {
+    hideCartMenu: {
       opacity: 0,
       translateX: 90,
       transition: {
@@ -60,7 +60,7 @@ export default function CartMenu() {
     <motion.div
       className="cartMenu"
       variants={cartMenu}
-      animate={state.openClose.isCartOpen ? "showCartWrap" : "hideCartWrap"}
+      animate={state.openClose.isCartOpen ? "showCart" : "hideCart"}
     >
       <div
         className="leftCartMenu"
@@ -71,9 +71,9 @@ export default function CartMenu() {
         }
       ></div>
       <motion.div
-        className="cartMenuWrapper"
+        className="rightCartMenu"
         variants={cartWrap}
-        animate={state.openClose.isCartOpen ? "showCart" : "hideCart"}
+        animate={state.openClose.isCartOpen ? "showCartMenu" : "hideCartMenu"}
       >
         <h1 className="cartMenuHeader">Shopping Bag</h1>
         <ul className="cartMenuList">
@@ -113,11 +113,9 @@ export default function CartMenu() {
             );
           })}
         </ul>
-        <div className="cartMenuFooter">
-          <div className="total">
-            <h3>TOTAL:</h3>
-            <h2>#{state.cartAmounts.itemsAmount.toLocaleString("en-US")}</h2>
-          </div>
+        <div className="total">
+          <h3>TOTAL:</h3>
+          <h2>#{state.cartAmounts.itemsAmount.toLocaleString("en-US")}</h2>
         </div>
         <div className="cartMenuBtns">
           <Link

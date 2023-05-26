@@ -6,8 +6,8 @@ import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
-import MobileMenu from "../components/MobileMenu";
-import CartMenu from "../components/CartMenu";
+import MobileMenu from "./MobileMenu";
+import CartMenu from "./CartMenu";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 
 export default function Nav() {
@@ -148,10 +148,9 @@ export default function Nav() {
       </div>
 
       {/* Mobile Menu */}
-      <MobileMenu />
 
       {/* Cart Menu */}
-      <CartMenu />
+      
 
       <a
         href="https://wa.me/2347080598310"

@@ -21,14 +21,20 @@ a {
   color: inherit;
 }
 
+html{
+  height: 100%;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   position: relative;
   color: $secondary;
+  height: 100%;
 }
 
 .App {
   display: grid;
+  // height: 100%;
 }
 
 ::-webkit-scrollbar {

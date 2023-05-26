@@ -19,11 +19,11 @@ export default function MobileMenu() {
 
   // Animations
   const mobileMenu: {} = {
-    showMenuWrap: {
+    showMenu: {
       opacity: 1,
       visibility: "visible",
     },
-    hideMenuWrap: {
+    hideMenu: {
       opacity: 0,
       transitionEnd: {
         visibility: "hidden",
@@ -32,7 +32,7 @@ export default function MobileMenu() {
   };
 
   const mobileLink = {
-    showMenu: {
+    showLeftMobileMenu: {
       translateX: 0,
       opacity: 1,
       transition: {
@@ -43,7 +43,7 @@ export default function MobileMenu() {
       },
     },
 
-    hideMenu: {
+    hideLeftMobileMenu: {
       opacity: 0,
       translateX: -90,
       transition: {
@@ -65,62 +65,68 @@ export default function MobileMenu() {
     <motion.div
       className="mobileMenu"
       variants={mobileMenu}
-      animate={state.openClose.isMenuOpen ? "showMenuWrap" : "hideMenuWrap"}
+      animate={state.openClose.isMenuOpen ? "showMenu" : "hideMenu"}
     >
       <div
         className="rightMobileMenu"
         onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
       ></div>
       <motion.div
-        className="mobileLinksWrapper"
+        className="leftMobileMenu"
         variants={mobileLink}
-        animate={state.openClose.isMenuOpen ? "showMenu" : "hideMenu"}
+        animate={
+          state.openClose.isMenuOpen
+            ? "showLeftMobileMenu"
+            : "hideLeftMobileMenu"
+        }
       >
-        {!state.userInfo ? (
+        <div className="menuLinks">
+          {!state.userInfo ? (
+            <Link
+              to="/signIn"
+              className={`${pathMatch("/signIn") && "activeNavLeft"}`}
+              onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
+            >
+              Sign In
+            </Link>
+          ) : (
+            <Link
+              to="/signIn"
+              className={`${pathMatch("/signIn") && "activeNavLeft"}`}
+              onClick={() => {
+                dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU });
+                signOut();
+              }}
+            >
+              Sign Out
+            </Link>
+          )}
           <Link
-            to="/signIn"
-            className={`${pathMatch("/signIn") && "activeNavLeft"}`}
+            to="/new_arrivals"
+            className={`${pathMatch("/new_arrivals") && "activeNavLeft"}`}
             onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
           >
-            Sign In
+            New Arrivals
           </Link>
-        ) : (
           <Link
-            to="/signIn"
-            className={`${pathMatch("/signIn") && "activeNavLeft"}`}
-            onClick={() => {
-              dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU });
-              signOut();
-            }}
+            to="/sales"
+            className={`${pathMatch("/sales") && "activeNavLeft"}`}
+            onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
           >
-            Sign Out
+            Sales
           </Link>
-        )}
-        <Link
-          to="/new_arrivals"
-          className={`${pathMatch("/new_arrivals") && "activeNavLeft"}`}
-          onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
-        >
-          New Arrivals
-        </Link>
-        <Link
-          to="/sales"
-          className={`${pathMatch("/sales") && "activeNavLeft"}`}
-          onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
-        >
-          Sales
-        </Link>
-        <p
-          onClick={() =>
-            dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH })
-          }
-          className={`mobileSearchBtn ${
-            state.openClose.isSearchOpen && "activeNavLeft"
-          }`}
-        >
-          Search
-        </p>
-        <div className="socialsMenu">
+          <p
+            onClick={() =>
+              dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH })
+            }
+            className={`mobileSearchBtn ${
+              state.openClose.isSearchOpen && "activeNavLeft"
+            }`}
+          >
+            Search
+          </p>
+        </div>
+        <div className="socialsLinks">
           <a href="https://wa.me/2347080598310" target="_blank">
             <BsWhatsapp />
             <p>(+234) 07080598310</p>
