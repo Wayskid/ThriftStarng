@@ -5,6 +5,7 @@ import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import { useParams } from "react-router-dom";
 import { INITIAL_STATE } from "../reducers/InitialState";
 import Loader from "../components/Loader";
+import { ComboBox, Item } from "@adobe/react-spectrum";
 
 export default function ViewItem() {
   const { state, dispatch, getSingleProduct, addToCart, addToWish } =
@@ -59,27 +60,22 @@ export default function ViewItem() {
                 {state.singleProduct.stockCount > 0 && (
                   <li className="detail">
                     <p className="quantityTitle">Quantity</p>
-                    <select
-                      className="quantityVal"
-                      value={state.qtySelected}
-                      onChange={(e) => {
+                    <ComboBox
+                      selectedKey={state.qtySelected}
+                      onSelectionChange={(key) => {
                         dispatch({
                           type: REDUCER_ACTION_TYPES.QTY_SELECTED,
-                          payload: e.target.value,
+                          payload: key,
                         });
                       }}
                       name="qtySelected"
                     >
                       {[...Array(state.singleProduct.stockCount).keys()].map(
                         (x): JSX.Element => {
-                          return (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          );
+                          return <Item key={x + 1}>{x + 1}</Item>;
                         }
                       )}
-                    </select>
+                    </ComboBox>
                   </li>
                 )}
               </ul>
