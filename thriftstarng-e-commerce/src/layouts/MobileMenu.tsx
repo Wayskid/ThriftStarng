@@ -1,4 +1,4 @@
-import "../sassStyles/cartMenu.scss";
+import "../sassStyles/mobileMenu.scss";
 import { Link, useLocation } from "react-router-dom";
 import { BsFacebook, BsInstagram, BsWhatsapp, BsX } from "react-icons/bs";
 import { useContext, useEffect } from "react";
