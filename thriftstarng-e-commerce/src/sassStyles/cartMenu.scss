@@ -99,9 +99,6 @@
       display: grid;
       gap: 0.2rem;
       padding-inline: 0.6rem;
-      position: absolute;
-      bottom: 1rem;
-      width: 100%;
 
       .cartMenuViewCartBtn {
         @include buttonsStyles($primary);
