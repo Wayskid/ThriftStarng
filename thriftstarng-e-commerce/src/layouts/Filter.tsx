@@ -2,8 +2,8 @@ import AppContext from "../contexts/AppContext";
 import { useContext, useEffect } from "react";
 import "../sassStyles/filter.scss";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
-import { IoMdClose } from "react-icons/io";
 import { motion } from "framer-motion";
+import { BsX } from "react-icons/bs";
 
 export default function Filter() {
   const { state, dispatch, handleFilter, getProducts } = useContext(AppContext);
@@ -43,16 +43,6 @@ export default function Filter() {
       variants={filterAnim}
       animate={state.openClose.isFilterOpen ? "anim" : "initial"}
     >
-      <button
-        className="closeFilter"
-        onClick={() =>
-          dispatch({
-            type: REDUCER_ACTION_TYPES.OPEN_CLOSE_FILTER,
-          })
-        }
-      >
-        <IoMdClose />
-      </button>
       <div className="category">
         <h2>Category</h2>
         <div className="radioDiv">
@@ -236,6 +226,16 @@ export default function Filter() {
           Apply
         </button>
       </div>
+      <button
+        className="closeFilter"
+        onClick={() =>
+          dispatch({
+            type: REDUCER_ACTION_TYPES.OPEN_CLOSE_FILTER,
+          })
+        }
+      >
+        <BsX />
+      </button>
     </motion.div>
   );
 }

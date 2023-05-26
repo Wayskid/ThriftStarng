@@ -4,11 +4,10 @@ import { motion } from "framer-motion";
 import SearchResult from "../components/SearchResult";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
+import { BsX } from "react-icons/bs";
 
 export default function Search() {
   const { state, dispatch, handleSearch } = useContext(AppContext);
-
-  window.scrollTo(0, 0);
 
   const searchAnim = {
     initial: {
@@ -72,6 +71,17 @@ export default function Search() {
         )}
       </div>
       <SearchResult />
+
+      <button
+        className="closeSearch"
+        onClick={() =>
+          dispatch({
+            type: REDUCER_ACTION_TYPES.CLOSE_SEARCH,
+          })
+        }
+      >
+        <BsX />
+      </button>
     </motion.div>
   );
 }

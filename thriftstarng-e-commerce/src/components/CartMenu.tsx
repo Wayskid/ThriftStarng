@@ -1,7 +1,6 @@
 import "../sassStyles/nav.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { BsX } from "react-icons/bs";
-import { IoMdClose } from "react-icons/io";
 import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { motion } from "framer-motion";
@@ -108,7 +107,7 @@ export default function CartMenu() {
                   </div>
                 </div>
                 <button className="deleteCartMenuItemBtn">
-                  <IoMdClose />
+                  <BsX />
                 </button>
               </li>
             );
