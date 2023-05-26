@@ -4,6 +4,7 @@ import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import { Link } from "react-router-dom";
 import ShopSection from "../components/ShopSection";
+import homeImg from "../assets/blake-connally-CG4GE2c165M-unsplash.jpg";
 
 export default function Home() {
   const { state, dispatch } = useContext(AppContext);
@@ -18,10 +19,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className="showcase">
-        <img
-          src="https://res.cloudinary.com/diiohnshc/image/upload/v1685020653/blake-connally-CG4GE2c165M-unsplash_pcyjtr.jpg"
-          alt="woman gold dress"
-        />
+        <img src={homeImg} alt="woman gold dress" />
         <div className="showcaseDetails">
           <p className="showcaseSmallP">Be the first to checkout our</p>
           <p className="showcaseBigP">New Arrivals</p>

@@ -1,5 +1,4 @@
 import { BsXCircleFill } from "react-icons/bs";
-import gown2 from "../assets/gown2.png";
 import { CartType } from "../Types";
 import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
@@ -11,7 +10,7 @@ export default function CartItem({ cartItem }: { cartItem: CartType }) {
   return (
     <li className="cartItem">
       <div className="imgWrap">
-        <img src={gown2} alt="gown" className="cartItemImg" />
+        <img src={cartItem.image} alt="gown" className="cartItemImg" />
       </div>
       <h3 className="name">{cartItem.name}</h3>
       <div className="qtyST">

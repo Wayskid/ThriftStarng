@@ -5,7 +5,6 @@ import { IoMdClose } from "react-icons/io";
 import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { motion } from "framer-motion";
-import gown2 from "../assets/gown2.png";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 
 export default function CartMenu() {
@@ -92,7 +91,11 @@ export default function CartMenu() {
                 }
               >
                 <div className="imgWrap">
-                  <img src={gown2} alt="gown" className="cartMenuItemImg" />
+                  <img
+                    src={cartItem.image}
+                    alt="gown"
+                    className="cartMenuItemImg"
+                  />
                 </div>
                 <div className="cartMenuItemMid">
                   <p className="iteName">{cartItem.name}</p>

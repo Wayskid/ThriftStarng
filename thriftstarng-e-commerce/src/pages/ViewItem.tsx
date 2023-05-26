@@ -2,7 +2,6 @@ import "../sassStyles/viewItem.scss";
 import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
-import gown2 from "../assets/gown2.png";
 import { useParams } from "react-router-dom";
 import { INITIAL_STATE } from "../reducers/InitialState";
 import Loader from "../components/Loader";
@@ -36,7 +35,7 @@ export default function ViewItem() {
       ) : (
         <>
           <div className="viewItemImage">
-            <img src={gown2} alt="gown" />
+            <img src={state.singleProduct.image} alt="gown" />
           </div>
           <div className="viewItemDetails">
             <h1 className="itemTitle">{state.singleProduct.name}</h1>
