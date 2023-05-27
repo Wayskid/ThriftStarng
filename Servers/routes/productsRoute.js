@@ -27,29 +27,45 @@ const productsRoute = express.Router();
 productsRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    const keyword =
-      req.query.s || req.query.c
-        ? {
-            $or: [
-              {
-                name: {
-                  $regex: [req.query.s],
-                  $options: "i",
-                },
-              },
-              {
-                category: {
-                  $regex: [req.query.c],
-                  $options: "i",
-                },
-              },
-            ],
-          }
-        : {};
+    // const keyword =
+    //   req.query.s || req.query.c
+    //     ? {
+    //         $or: [
+    //           {
+    //             name: {
+    //               $regex: req.query.s,
+    //               $options: "i",
+    //             },
+    //           },
+    //           {
+    //             category: {
+    //               $regex: req.query.c,
+    //               $options: "i",
+    //             },
+    //           },
+    //         ],
+    //       }
+    //     : {};
 
     const products = await Product.find({
-      ...keyword,
+      $or: [
+        {
+          name: {
+            $regex: req.query.s,
+            $options: "i",
+          },
+        },
+        {
+          category: {
+            $regex: req.query.c,
+            $options: "i",
+          },
+        },
+      ],
     });
+    // const products = await Product.find({
+    //   ...keyword,
+    // });
     // .sort({ [req.query.sort]: req.query.order });
     res.json(products);
   })
