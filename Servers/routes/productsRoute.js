@@ -8,48 +8,59 @@ const productsRoute = express.Router();
 productsRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    const queryInput = req.query.s || req.query.c;
+    if (req.query.s.length) {
+      const products = await Product.find({
+        $or: [
+          {
+            name: {
+              $regex: req.query.s,
+              $options: "i",
+            },
+          },
+        ],
+      });
+      res.json(products);
+    } else if (req.query.c.length) {
+      const products = await Product.find({
+        $or: [
+          {
+            category: {
+              $regex: req.query.c,
+              $options: "i",
+            },
+          },
+        ],
+      });
+      res.json(products);
+    } else {
+      const products = await Product.find({});
+      res.json(products);
+    }
 
-    const keyword = queryInput
-      ? {
-          $or: [
-            {
-              name: {
-                $regex: req.query.s || "",
-                $options: "i",
-              },
-            },
-            {
-              category: {
-                $regex: req.query.c || "",
-                $options: "i",
-              },
-            },
-          ],
-        }
-      : {};
+    // keyword = queryInput
+    //   ? {
+    //       $or: [
+    //         {
+    //           name: {
+    //             $regex: req.query.s || "",
+    //             $options: "i",
+    //           },
+    //         },
+    //         {
+    //           category: {
+    //             $regex: req.query.c || "",
+    //             $options: "i",
+    //           },
+    //         },
+    //       ],
+    //     }
+    //   : {};
 
     // const products = await Product.find({
-    //   $or: [
-    //     {
-    //       name: {
-    //         $regex: req.query.s,
-    //         $options: "i",
-    //       },
-    //     },
-    //     {
-    //       category: {
-    //         $regex: req.query.c,
-    //         $options: "i",
-    //       },
-    //     },
-    //   ],
+    //   ...keyword,
     // });
-    const products = await Product.find({
-      ...keyword,
-    });
-    // .sort({ [req.query.sort]: req.query.order });
-    res.json(products);
+    // // .sort({ [req.query.sort]: req.query.order });
+    // res.json(products);
   })
 );
 
