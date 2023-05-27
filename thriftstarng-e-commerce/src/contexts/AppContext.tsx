@@ -331,12 +331,7 @@ export function AppProvider({
           payload: true,
         });
         const { data } = await axios.get(
-          `https://thriftstarng.onrender.com/api/products?s=${searchVal.trim()}&sort=${
-            state.productFilterSort.sort === "priceAsc" ||
-            state.productFilterSort.sort === "priceDesc"
-              ? "price"
-              : "createdAt"
-          }&order=${state.productFilterSort.sort === "priceAsc" ? 1 : -1}`
+          `https://thriftstarng.onrender.com/api/products?s=${searchVal}`
         );
 
         dispatch({
