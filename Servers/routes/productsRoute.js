@@ -18,7 +18,7 @@ productsRoute.get(
             },
           },
         ],
-      }.sort({ [req.query.sort]: req.query.order }));
+      }).sort({ [req.query.sort]: req.query.order });
       res.json(products);
     } else if (req.query.c) {
       const products = await Product.find({
@@ -30,7 +30,7 @@ productsRoute.get(
             },
           },
         ],
-      }.sort({ [req.query.sort]: req.query.order }));
+      }).sort({ [req.query.sort]: req.query.order });
       res.json(products);
     } else if (req.query.c && req.query.s) {
       const products = await Product.find({
@@ -51,34 +51,9 @@ productsRoute.get(
       });
       res.json(products);
     } else {
-      const products = await Product.find({}.sort({ [req.query.sort]: req.query.order }));
+      const products = await Product.find({}).sort({ [req.query.sort]: req.query.order });
       res.json(products);
     }
-
-    // keyword = queryInput
-    //   ? {
-    //       $or: [
-    //         {
-    //           name: {
-    //             $regex: req.query.s || "",
-    //             $options: "i",
-    //           },
-    //         },
-    //         {
-    //           category: {
-    //             $regex: req.query.c || "",
-    //             $options: "i",
-    //           },
-    //         },
-    //       ],
-    //     }
-    //   : {};
-
-    // const products = await Product.find({
-    //   ...keyword,
-    // });
-    // // .sort({ [req.query.sort]: req.query.order });
-    // res.json(products);
   })
 );
 
