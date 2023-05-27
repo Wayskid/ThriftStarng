@@ -32,10 +32,7 @@ productsRoute.get(
         ? {
             $or: [
               {
-                name: {
-                  $regex: req.query.s,
-                  $options: "i",
-                },
+                name: req.query.s,
               },
               {
                 category: {
