@@ -371,7 +371,8 @@ export function AppProvider({
             ? ""
             : state.productFilterSort.category
         }&sort=${
-          state.productFilterSort.sort === "priceAsc" || "priceDesc"
+          state.productFilterSort.sort === "priceAsc" ||
+          state.productFilterSort.sort === "priceDesc"
             ? "price"
             : "createdAt"
         }&order=${state.productFilterSort.sort === "priceAsc" ? 1 : -1}`
