@@ -15,13 +15,13 @@ productsRoute.get(
           $or: [
             {
               name: {
-                $regex: req.query.s,
+                $regex: req.query.s || "",
                 $options: "i",
               },
             },
             {
               category: {
-                $regex: req.query.c,
+                $regex: req.query.c || "",
                 $options: "i",
               },
             },
