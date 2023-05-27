@@ -8,7 +8,7 @@ const productsRoute = express.Router();
 productsRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    if (req.query.s.length) {
+    if (req.query.s) {
       const products = await Product.find({
         $or: [
           {
@@ -20,9 +20,27 @@ productsRoute.get(
         ],
       });
       res.json(products);
-    } else if (req.query.c.length) {
+    } else if (req.query.c) {
       const products = await Product.find({
         $or: [
+          {
+            category: {
+              $regex: req.query.c,
+              $options: "i",
+            },
+          },
+        ],
+      });
+      res.json(products);
+    } else if (req.query.c && req.query.s) {
+      const products = await Product.find({
+        $or: [
+          {
+            name: {
+              $regex: req.query.s,
+              $options: "i",
+            },
+          },
           {
             category: {
               $regex: req.query.c,
