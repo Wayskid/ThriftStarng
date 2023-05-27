@@ -235,7 +235,7 @@ export function AppProvider({
     });
   }
 
-  //Handle Order
+  //Create Order
   async function handleOrder(reference: any) {
     try {
       dispatch({
@@ -314,10 +314,7 @@ export function AppProvider({
     }
   }
 
-  function loadMore() {
-    dispatch({ type: REDUCER_ACTION_TYPES.PAGENATION });
-  }
-
+  //Handle Search
   async function handleSearch(searchVal: String) {
     dispatch({
       type: REDUCER_ACTION_TYPES.SEARCH_KEYWORD,
@@ -351,6 +348,7 @@ export function AppProvider({
     }
   }
 
+  //Handle Filter
   async function handleFilter() {
     try {
       const { data } = await axios.get(
@@ -362,20 +360,7 @@ export function AppProvider({
           state.productFilterSort.sort === "priceAsc" || "priceDesc"
             ? "price"
             : "createdAt"
-        }&order=${state.productFilterSort.sort === "priceAsc" ? 1 : -1}`
-      );
-
-      console.log(
-        `https://thriftstarng.onrender.com/api/products?c=${
-          state.productFilterSort.category === "All"
-            ? ""
-            : state.productFilterSort.category
-        }&sort=${
-          state.productFilterSort.sort === "priceAsc" ||
-          state.productFilterSort.sort === "priceDesc"
-            ? "price"
-            : "createdAt"
-        }&order=${state.productFilterSort.sort === "priceAsc" ? 1 : -1}`
+        }&order=${state.productFilterSort.sort === "priceDesc" ? -1 : 1}`
       );
 
       dispatch({ type: REDUCER_ACTION_TYPES.GET_PRODUCTS_LIST, payload: data });
@@ -384,6 +369,7 @@ export function AppProvider({
     }
   }
 
+  //UseEffects
   useEffect(() => {
     //Change page title
     document.title = pageTitle;
@@ -447,7 +433,6 @@ export function AppProvider({
         signOut,
         handleBillingDetails,
         handleOrder,
-        loadMore,
         handleSearch,
         handleFilter,
       }}

@@ -8,7 +8,7 @@ import Payment from "../components/Payment";
 import OrderComplete from "../components/OrderComplete";
 import OrderSummary from "../components/OrderSummary";
 import { BiCheck } from "react-icons/bi";
-import ShippingInfo from "../components/shippingInfo";
+import ShippingInfo from "../components/ShippingInfo";
 
 export default function Checkout() {
   const { state, dispatch } = useContext(AppContext);

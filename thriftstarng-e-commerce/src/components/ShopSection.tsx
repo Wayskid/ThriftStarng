@@ -1,3 +1,4 @@
+import "../sassStyles/shopSection.scss";
 import ShopList from "./ShopList";
 import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
@@ -6,7 +7,7 @@ import { BsFilterLeft } from "react-icons/bs";
 import Loader from "./Loader";
 
 export default function ShopSection() {
-  const { state, dispatch, getProducts, loadMore } = useContext(AppContext);
+  const { state, dispatch, getProducts } = useContext(AppContext);
 
   useEffect(() => {
     getProducts();
@@ -34,7 +35,10 @@ export default function ShopSection() {
       </div>
       {state.isLoading ? <Loader /> : <ShopList />}
       {state.pagenation <= state.products.length && !state.isLoading && (
-        <button className="loadMoreBtn" onClick={loadMore}>
+        <button
+          className="loadMoreBtn"
+          onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.PAGENATION })}
+        >
           Load More
         </button>
       )}

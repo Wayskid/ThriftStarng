@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 
-export default function shippingInfo() {
+export default function ShippingInfo() {
   const { state, dispatch } = useContext(AppContext);
   const { billingDetails } = state;
 

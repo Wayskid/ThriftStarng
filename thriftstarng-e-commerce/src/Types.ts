@@ -104,7 +104,6 @@ export type UseAppContextType = {
   signOut: () => void;
   handleBillingDetails: (e: FormEvent) => void;
   handleOrder: (reference: Object) => void;
-  loadMore: () => void;
   handleSearch: (e: String) => void;
   handleFilter: () => void;
 };
