@@ -358,12 +358,13 @@ export function AppProvider({
           state.productFilterSort.category === "All"
             ? ""
             : state.productFilterSort.category
-        }&sort=${
-          state.productFilterSort.sort === "priceAsc" ||
-          state.productFilterSort.sort === "priceDesc"
-            ? "price"
-            : "createdAt"
-        }&order=${state.productFilterSort.sort === "priceAsc" ? 1 : -1}`
+        }`
+        // &sort=${
+        //   state.productFilterSort.sort === "priceAsc" ||
+        //   state.productFilterSort.sort === "priceDesc"
+        //     ? "price"
+        //     : "createdAt"
+        // }&order=${state.productFilterSort.sort === "priceAsc" ? 1 : -1}
       );
 
       dispatch({ type: REDUCER_ACTION_TYPES.GET_PRODUCTS_LIST, payload: data });
