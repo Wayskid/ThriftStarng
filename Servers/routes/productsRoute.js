@@ -49,7 +49,8 @@ productsRoute.get(
 
     const products = await Product.find({
       ...keyword,
-    }).sort({ [req.query.sort]: req.query.order });
+    });
+    // .sort({ [req.query.sort]: req.query.order });
     res.json(products);
   })
 );
