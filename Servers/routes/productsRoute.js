@@ -51,7 +51,7 @@ productsRoute.get(
       });
       res.json(products);
     } else {
-      const products = await Product.find({}).sort({ [req.query.sort]: req.query.order });
+      const products = await Product.find({});
       res.json(products);
     }
   })
