@@ -8,7 +8,7 @@ const productsRoute = express.Router();
 productsRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    const keyword = req.query
+    const keyword = req.query.s
       ? {
           $or: [
             {
