@@ -5,7 +5,7 @@ import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
 
 export default function Alerts() {
-  const { dispatch, state, signOut } = useContext(AppContext);
+  const { state, } = useContext(AppContext);
 
   const alertAnim = {
     showAlert: {
@@ -35,7 +35,7 @@ export default function Alerts() {
       variants={alertAnim}
       animate={state.openClose.isAlertOpen ? "showAlert" : "hideAlert"}
     >
-      <p>Added to Cart</p>
+      <p>{state.alertMessage}</p>
       <button className="closeAlertBtn">
         <BsXCircle />
       </button>
