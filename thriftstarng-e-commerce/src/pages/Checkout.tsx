@@ -83,7 +83,7 @@ export default function Checkout() {
             {state.openClose.isBillingDetailsOpen ? (
               <BillingDetails />
             ) : (
-              !state.openClose.isOrderCompleteOpen && <ShippingInfo />
+              !state.openClose.isOrderCompleteOpen && <ShippingInfo/>
             )}
           </div>
         </div>
