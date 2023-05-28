@@ -4,7 +4,6 @@ import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import { BsFilterLeft } from "react-icons/bs";
-import Loader from "./Loader";
 import SkeletonLoader from "./SkeletonLoader";
 
 export default function ShopSection() {
