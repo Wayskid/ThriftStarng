@@ -1,7 +1,7 @@
 @import "./variables";
 
 .alerts{
-    position: absolute;
+    position: fixed;
     top: 0.5rem;
     justify-self: center;
     z-index: 7;
