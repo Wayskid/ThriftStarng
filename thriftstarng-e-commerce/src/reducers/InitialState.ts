@@ -14,6 +14,7 @@ export const INITIAL_STATE = {
     isPaymentOpen: false,
     isOrderCompleteOpen: false,
     isFilterOpen: false,
+    isAlertOpen: false,
   },
   pageTitle: "SHOP - ThriftStarng",
   countryList: [],
@@ -65,4 +66,5 @@ export const INITIAL_STATE = {
     category: "",
     sort: "",
   },
+  alertMessage: "",
 };

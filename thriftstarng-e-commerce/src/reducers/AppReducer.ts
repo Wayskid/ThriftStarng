@@ -272,6 +272,27 @@ export function AppReducer(state: INITIAL_STATE_TYPES, action: ActionTypes) {
           sort: "",
         },
       };
+    case REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT:
+      return {
+        ...state,
+        openClose: {
+          ...state.openClose,
+          isAlertOpen: !state.openClose.isAlertOpen,
+        },
+      };
+    case REDUCER_ACTION_TYPES.CLOSE_ALERT:
+      return {
+        ...state,
+        openClose: {
+          ...state.openClose,
+          isAlertOpen: false,
+        },
+      };
+    case REDUCER_ACTION_TYPES.ALERT_MESSAGE:
+      return {
+        ...state,
+        alertMessage: action.payload,
+      };
 
     default:
       return state;

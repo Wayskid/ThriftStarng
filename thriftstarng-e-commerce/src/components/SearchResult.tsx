@@ -11,9 +11,7 @@ export default function SearchResult() {
         <Loader />
       ) : (
         <ul className="shopList">
-          {state.searchResult
-            .slice(0, state.pagenation)
-            .map((product): JSX.Element => {
+          {state.searchResult.map((product): JSX.Element => {
               return <ItemCard key={product._id} product={product} />;
             })}
         </ul>

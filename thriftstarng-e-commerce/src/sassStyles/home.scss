@@ -50,58 +50,6 @@
   }
 }
 
-.shopSection {
-  display: grid;
-  padding: 1rem;
-  position: relative;
-  min-height: 50vh;
-  align-content: baseline;
-  gap: 1.5rem;
-
-  &Top {
-    width: min(70rem, 100%);
-    display: flex;
-    justify-self: center;
-    justify-content: space-between;
-    align-items: center;
-
-    .catSelected {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-
-    button {
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
-      background: none;
-      border: none;
-      font-size: 17px;
-      cursor: pointer;
-      color: $secondary;
-
-      span {
-        font-size: 25px;
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
-
-  .shopList {
-    width: min(70rem, 85%);
-    @include shopListStyle;
-  }
-
-  .loadMoreBtn {
-    justify-self: center;
-    @include buttonsStyles($primary);
-    padding: 0.8rem 1.5rem;
-    margin-top: 1rem;
-  }
-}
-
 .divLoader {
   height: 400px;
   background-color: rgb(246, 243, 243);

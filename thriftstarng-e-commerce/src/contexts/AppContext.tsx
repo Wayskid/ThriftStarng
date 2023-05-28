@@ -93,6 +93,14 @@ export function AppProvider({
 
     if (cartList.find((item) => item.product === id)) {
       //DO already added alert and icon should change
+      dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      dispatch({
+        type: REDUCER_ACTION_TYPES.ALERT_MESSAGE,
+        payload: "Already in Cart",
+      });
+      setTimeout(() => {
+        dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      }, 1000);
     } else {
       //DO added alert alert and icon should change
       dispatch({
@@ -107,6 +115,14 @@ export function AppProvider({
           qty,
         },
       });
+      dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      dispatch({
+        type: REDUCER_ACTION_TYPES.ALERT_MESSAGE,
+        payload: "Added to Cart",
+      });
+      setTimeout(() => {
+        dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      }, 1000);
     }
   }
 

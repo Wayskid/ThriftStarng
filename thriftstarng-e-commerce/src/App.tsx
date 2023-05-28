@@ -20,6 +20,7 @@ import AppContext from "./contexts/AppContext";
 import Filter from "./layouts/Filter";
 import CartMenu from "./layouts/CartMenu";
 import MobileMenu from "./layouts/MobileMenu";
+import Alerts from "./layouts/Alerts";
 
 function App() {
   const { state } = useContext(AppContext);
@@ -58,6 +59,7 @@ function App() {
       <CartMenu />
       <Search />
       <Filter />
+      <Alerts/>
     </div>
   );
 }

@@ -37,7 +37,7 @@
         @include inputField;
         padding-block: 0.4rem;
         border: none;
-        font-size: 17px
+        font-size: 17px;
       }
 
       .searchBtn {
@@ -55,15 +55,107 @@
     overflow-y: auto;
     width: 100%;
     display: grid;
-    
-    p, h1{
-      text-align: center
+
+    p,
+    h1 {
+      text-align: center;
     }
-    
+
     .shopList {
-      @include shopListStyle;
       width: min(70rem, 95%);
       padding-bottom: 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      justify-self: center;
+      gap: 1.5rem;
+
+      .itemCard {
+        display: grid;
+        justify-items: center;
+        color: $secondary;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0px 1px 5px 1px rgba(128, 128, 128, 0.13);
+        overflow: hidden;
+
+        &:hover .itemCardTop {
+          translate: 0 -1.5rem;
+        }
+
+        &:hover .addToWishlistBtn {
+          opacity: 1;
+          right: 0.3rem;
+        }
+
+        &Top {
+          transition: 0.4s ease;
+          z-index: 2;
+          display: grid;
+          gap: 0.5rem;
+          background-color: white;
+          padding-bottom: 0.5rem;
+
+          a {
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .itemCardDetailsWrap {
+            text-align: center;
+
+            .nameSize {
+              display: flex;
+              justify-content: center;
+              gap: 0.2rem;
+              .itemCategory {
+                font-style: italic;
+              }
+            }
+
+            .price {
+              font-size: 20px;
+              text-align: center;
+              margin-top: 0.5rem;
+            }
+          }
+        }
+
+        .addToCartBtn {
+          position: absolute;
+          bottom: 0;
+          z-index: -1;
+          padding-block: 0.2rem;
+          background: none;
+          border: none;
+          font-size: 17px;
+          color: $primary;
+          cursor: pointer;
+          justify-self: center;
+
+          &:hover {
+            color: $purple;
+          }
+        }
+
+        .addToWishlistBtn {
+          position: absolute;
+          top: 0.4rem;
+          right: -1rem;
+          background: none;
+          border: none;
+          font-size: 30px;
+          opacity: 0;
+          color: rgb(73, 71, 71);
+          z-index: 3;
+          transition: 0.3s ease;
+
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
     }
   }
 

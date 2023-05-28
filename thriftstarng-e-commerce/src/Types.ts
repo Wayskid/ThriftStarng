@@ -41,6 +41,7 @@ export interface INITIAL_STATE_TYPES {
     isPaymentOpen: boolean;
     isOrderCompleteOpen: boolean;
     isFilterOpen: boolean;
+    isAlertOpen: boolean;
   };
   pageTitle: String;
   countryList: string[];
@@ -90,6 +91,7 @@ export interface INITIAL_STATE_TYPES {
     category: String;
     sort: String;
   };
+  alertMessage: String;
 }
 
 export type UseAppContextType = {
