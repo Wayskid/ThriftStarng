@@ -5,6 +5,7 @@ import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import { BsFilterLeft } from "react-icons/bs";
 import Loader from "./Loader";
+import SkeletonLoader from "./SkeletonLoader";
 
 export default function ShopSection() {
   const { state, dispatch, getProducts } = useContext(AppContext);
@@ -33,7 +34,16 @@ export default function ShopSection() {
           </span>
         </button>
       </div>
-      {state.isLoading ? <Loader /> : <ShopList />}
+      {state.isLoading ? (
+        <div className="skeletonLoaders">
+          <SkeletonLoader />
+          <SkeletonLoader />
+          <SkeletonLoader />
+          <SkeletonLoader />
+        </div>
+      ) : (
+        <ShopList />
+      )}
       {state.pagenation <= state.products.length && !state.isLoading && (
         <button
           className="loadMoreBtn"

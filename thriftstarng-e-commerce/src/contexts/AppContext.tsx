@@ -92,7 +92,6 @@ export function AppProvider({
     );
 
     if (cartList.find((item) => item.product === id)) {
-      //DO already added alert and icon should change
       dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
       dispatch({
         type: REDUCER_ACTION_TYPES.ALERT_MESSAGE,
@@ -102,7 +101,6 @@ export function AppProvider({
         dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
       }, 1000);
     } else {
-      //DO added alert alert and icon should change
       dispatch({
         type: REDUCER_ACTION_TYPES.ADD_TO_CART,
         payload: {
@@ -133,7 +131,14 @@ export function AppProvider({
     );
 
     if (wishList.find((item) => item.product === id)) {
-      //DO already added alert and icon should change
+      dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      dispatch({
+        type: REDUCER_ACTION_TYPES.ALERT_MESSAGE,
+        payload: "Added to Wishlist",
+      });
+      setTimeout(() => {
+        dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      }, 1000);
     } else {
       //DO added alert alert and icon should change
       dispatch({
@@ -149,6 +154,14 @@ export function AppProvider({
           qty,
         },
       });
+      dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      dispatch({
+        type: REDUCER_ACTION_TYPES.ALERT_MESSAGE,
+        payload: "Already in Wishlist",
+      });
+      setTimeout(() => {
+        dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ALERT });
+      }, 1000);
     }
   }
 
