@@ -1,0 +1,27 @@
+@import "./variables";
+
+.navMenu {
+  position: absolute;
+  display: grid;
+  color: $secondary;
+  background-color: $secondary;
+  gap: 0.05rem;
+  border: 0.05rem solid $secondary;
+  top: 2.2rem;
+  right: 0;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+  width: max-content;
+
+  & > * {
+    background-color: #ffffff;
+    padding: 0.8rem 2rem;
+
+    &:hover {
+      background-color: $primary;
+      transition: 0.3s ease;
+    }
+  }
+}

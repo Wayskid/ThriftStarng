@@ -21,7 +21,7 @@ export default function Alerts() {
 
     hideAlert: {
       opacity: 0,
-      translateY: -5,
+      translateY: -100,
       transition: {
         type: "spring",
         restSpeed: 0.5,

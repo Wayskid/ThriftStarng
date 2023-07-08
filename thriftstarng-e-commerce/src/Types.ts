@@ -33,6 +33,7 @@ export interface INITIAL_STATE_TYPES {
   qtySelected: number;
   isLoading: boolean;
   openClose: {
+    isNavMenuOpen: boolean;
     isSearchOpen: boolean;
     isMenuOpen: boolean;
     isCartOpen: boolean;
@@ -81,7 +82,13 @@ export interface INITIAL_STATE_TYPES {
     email: string;
     password: string;
   };
-  userInfo: null;
+  userInfo: {
+    _id: string;
+    name: string;
+    email: string;
+    isAdmin: boolean;
+    token: string;
+  };
   isPasswordShown: boolean;
   pagenation: number;
   errorMsg: String;
@@ -94,15 +101,43 @@ export interface INITIAL_STATE_TYPES {
   alertMessage: String;
 }
 
+export interface OrderInfoTypes {
+  _id: string;
+  orderItems: CartType[];
+  userInfo: {
+    name: string;
+    email: string;
+    phone: string;
+  };
+  userId: string;
+  shippingDetails: {
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    country: string;
+    postcode: string;
+    orderNote: string;
+  };
+  itemsAmount: number;
+  shippingFee: number;
+  tax: number;
+  totalAmount: number;
+  isPaid: boolean;
+  paidAt: number;
+}
+
 export type UseAppContextType = {
   state: INITIAL_STATE_TYPES;
   dispatch: React.Dispatch<ActionTypes>;
+  pathMatch: (route: string) => boolean;
   getProducts: () => void;
   getSingleProduct: (id: String | undefined) => void;
   addToCart: (qty: Number, id: String) => void;
   addToWish: (qty: Number, id: String) => void;
   signUp: (e: FormEvent) => void;
   signIn: (e: FormEvent) => void;
+  getProfile: () => void;
   signOut: () => void;
   handleBillingDetails: (e: FormEvent) => void;
   handleOrder: (reference: Object) => void;

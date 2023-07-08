@@ -62,7 +62,8 @@ export const signUp = async (req, res) => {
 // Get profile
 export const getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const { userId } = req.params;
+    const user = await User.findById(userId);
 
     if (user) {
       res.status(200).json({

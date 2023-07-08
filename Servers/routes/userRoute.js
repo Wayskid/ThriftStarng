@@ -11,6 +11,6 @@ usersRoute.post("/signIn", signIn);
 usersRoute.post("/signUp", signUp);
 
 // Get profile
-usersRoute.get("/profile", protect, getProfile);
+usersRoute.get("/:userId", protect, getProfile);
 
 export default usersRoute;

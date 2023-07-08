@@ -111,6 +111,22 @@ export function AppReducer(state: INITIAL_STATE_TYPES, action: ActionTypes) {
             state.cartAmounts.tax,
         },
       };
+    case REDUCER_ACTION_TYPES.OPEN_CLOSE_NAVMENU:
+      return {
+        ...state,
+        openClose: {
+          ...state.openClose,
+          isNavMenuOpen: !state.openClose.isNavMenuOpen,
+        },
+      };
+    case REDUCER_ACTION_TYPES.CLOSE_NAVMENU:
+      return {
+        ...state,
+        openClose: {
+          ...state.openClose,
+          isNavMenuOpen: false,
+        },
+      };
     case REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH:
       return {
         ...state,

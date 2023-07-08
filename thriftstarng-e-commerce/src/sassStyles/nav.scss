@@ -91,10 +91,12 @@
       gap: 0.8rem;
 
       a,
+      .profile,
       .openCart {
         display: flex;
         align-items: center;
         cursor: pointer;
+        position: relative;
 
         .iconBadge {
           position: relative;

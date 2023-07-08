@@ -11,6 +11,7 @@ import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import axios from "axios";
 import moment from "moment";
 import { INITIAL_STATE } from "../reducers/InitialState";
+import { useLocation } from "react-router-dom";
 
 const AppContext = createContext<UseAppContextType>({} as UseAppContextType);
 
@@ -31,6 +32,15 @@ export function AppProvider({
     pageTitle,
     openClose,
   } = state;
+
+  // Active Link
+  const location = useLocation();
+  function pathMatch(route: string): boolean {
+    if (route === location.pathname) {
+      return true;
+    }
+    return false;
+  }
 
   //Get Products
   async function getProducts() {
@@ -181,7 +191,7 @@ export function AppProvider({
       };
 
       const { data } = await axios.post(
-        "https://thriftstarng.onrender.com/api/users",
+        "https://thriftstarng.onrender.com/api/users/signUp",
         {
           name: signUpInputs.name,
           email: signUpInputs.email,
@@ -198,7 +208,7 @@ export function AppProvider({
     }
   }
 
-  //SingIn
+  //SignIn
   async function signIn(e: FormEvent) {
     e.preventDefault();
 
@@ -234,7 +244,38 @@ export function AppProvider({
     }
   }
 
-  //SingOut
+  //Get user profile
+  async function getProfile() {
+    try {
+      dispatch({
+        type: REDUCER_ACTION_TYPES.LOADING,
+        payload: true,
+      });
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${state.userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.get(
+        `https://thriftstarng.onrender.com/api/users/${state.userInfo._id}`,
+        config
+      );
+
+      console.log(data);
+      dispatch({ type: REDUCER_ACTION_TYPES.GET_USER_INFO, payload: data });
+      dispatch({
+        type: REDUCER_ACTION_TYPES.LOADING,
+        payload: false,
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: REDUCER_ACTION_TYPES.LOADING, payload: false });
+    }
+  }
+
+  //SignOut
   async function signOut() {
     localStorage.removeItem("userInfo");
 
@@ -286,6 +327,7 @@ export function AppProvider({
             email: billingDetails.email,
             phone: billingDetails.phone,
           },
+          userId: userInfo._id,
           shippingDetails: {
             name: billingDetails.gift
               ? billingDetails.giftFirstName + " " + billingDetails.giftLastName
@@ -453,12 +495,14 @@ export function AppProvider({
       value={{
         state,
         dispatch,
+        pathMatch,
         getProducts,
         getSingleProduct,
         addToCart,
         addToWish,
         signUp,
         signIn,
+        getProfile,
         signOut,
         handleBillingDetails,
         handleOrder,

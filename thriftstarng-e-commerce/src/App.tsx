@@ -15,19 +15,24 @@ import Search from "./layouts/Search";
 import ViewItem from "./pages/ViewItem";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
-import ScrollToTop from "./pages/ScrollToTop";
+// import ScrollToTop from "./pages/ScrollToTop";
 import AppContext from "./contexts/AppContext";
 import Filter from "./layouts/Filter";
 import CartMenu from "./layouts/CartMenu";
 import MobileMenu from "./layouts/MobileMenu";
 import Alerts from "./layouts/Alerts";
+import Account from "./pages/Account";
+import Billing from "./pages/Billing";
+import OrderHistory from "./pages/OrderHistory";
+import PersonalInfo from "./pages/PersonalInfo";
+import Settings from "./pages/Settings";
 
 function App() {
   const { state } = useContext(AppContext);
 
   return (
     <div className="App">
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <Nav />
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -45,13 +50,19 @@ function App() {
         <Route path="sales" element={<Sales />}></Route>
         <Route path="wish" element={<Wish />}></Route>
         <Route path="about" element={<About />}></Route>
-        <Route path="products/:id" element={<ViewItem />}></Route>
+        <Route path="products/:productId" element={<ViewItem />}></Route>
         <Route
           path="checkout"
           element={
             state.cartList.length ? <Checkout /> : <Navigate to="/cart" />
           }
         />
+        <Route path="/account" element={<Account />}>
+          <Route index element={<PersonalInfo />}></Route>
+          <Route path="billing" element={<Billing />}></Route>
+          <Route path="orderHistory" element={<OrderHistory />}></Route>
+          <Route path="settings" element={<Settings />}></Route>
+        </Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
@@ -59,7 +70,7 @@ function App() {
       <CartMenu />
       <Search />
       <Filter />
-      <Alerts/>
+      <Alerts />
     </div>
   );
 }

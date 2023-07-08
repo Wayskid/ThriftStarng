@@ -7,22 +7,10 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
+import NavMenu from "../components/NavMenu";
 
 export default function Nav() {
-  const {
-    state,
-    signOut,
-    dispatch,
-  } = useContext(AppContext);
-  const location = useLocation();
-
-  // Active Link
-  function pathMatch(route: string): boolean {
-    if (route === location.pathname) {
-      return true;
-    }
-    return false;
-  }
+  const { state, pathMatch, signOut, dispatch } = useContext(AppContext);
 
   return (
     <nav className="nav">
@@ -103,18 +91,18 @@ export default function Nav() {
               <p>Sign In</p>
             </Link>
           ) : (
-            <Link
-              to="/signIn"
-              className={`${pathMatch("/signIn") && "activeNavRight"}`}
+            <div
+              className={`profile ${pathMatch("/signIn") && "activeNavRight"}`}
               onClick={() => {
-                signOut();
+                dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_NAVMENU });
                 dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_SEARCH });
                 dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_FILTER });
               }}
             >
-              <BiLogOut className="navMainRightIcon" />
-              <p>Sign Out</p>
-            </Link>
+              <BiUser className="navMainRightIcon" />
+              <p>Profile</p>
+              {state.openClose.isNavMenuOpen && <NavMenu />}
+            </div>
           )}
           <Link
             to="/wish"
@@ -148,7 +136,6 @@ export default function Nav() {
       {/* Mobile Menu */}
 
       {/* Cart Menu */}
-      
 
       <a
         href="https://wa.me/2347080598310"

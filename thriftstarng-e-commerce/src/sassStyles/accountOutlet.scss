@@ -1,0 +1,43 @@
+@import "./variables";
+
+.accountOutlet {
+  display: grid;
+  gap: 1rem;
+
+  .outletHeader {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .outletIntro {
+    font-size: 15px;
+    color: rgb(60, 60, 60);
+  }
+
+  .info {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid $primary;
+    border-radius: 10px;
+
+    &Flex {
+      display: flex;
+      justify-content: space-between;
+
+      .infoTitle {
+        font-weight: 500;
+      }
+
+      .infoIcon {
+        font-size: 23px;
+        color: $primary;
+      }
+    }
+
+    &Value {
+      font-weight: 300;
+      font-size: 20px;
+    }
+  }
+}

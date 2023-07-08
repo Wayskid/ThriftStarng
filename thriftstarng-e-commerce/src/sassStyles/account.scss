@@ -1,0 +1,76 @@
+@import "./variables";
+
+.account {
+  display: grid;
+  padding: 5.5rem 1rem 1rem;
+  align-items: start;
+  gap: 1.5rem;
+
+  @include desktop {
+    padding-block: 5rem 1rem;
+  }
+
+  &Header {
+    text-align: center;
+
+    @include desktop {
+      text-align: left;
+      justify-self: center;
+      width: min(65rem, 100%);
+    }
+  }
+
+  .introRoutes {
+    display: grid;
+    justify-items: center;
+    gap: 2rem;
+
+    .accountIntro {
+      display: grid;
+      text-align: center;
+
+      .userName {
+        margin-top: 1rem;
+        font-size: 22px;
+        font-weight: 500;
+      }
+
+      .userEmail {
+        font-size: 15px;
+        color: rgb(109, 109, 109);
+      }
+
+      img {
+        width: 12rem;
+        height: 12rem;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .accountRoutes {
+      display: none;
+    }
+  }
+
+  .accountNav {
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      width: 3rem;
+      height: 3rem;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      border-radius: 50%;
+      border: 1px solid $primary;
+      color: rgb(109, 109, 109);
+    }
+  }
+
+  .activeAccountNav {
+    color: white;
+    background-color: $primary;
+  }
+}

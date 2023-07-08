@@ -4,8 +4,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
 @import "./variables";
 
@@ -21,12 +20,12 @@ a {
   color: inherit;
 }
 
-html{
+html {
   height: 100%;
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   position: relative;
   color: $secondary;
   height: 100%;

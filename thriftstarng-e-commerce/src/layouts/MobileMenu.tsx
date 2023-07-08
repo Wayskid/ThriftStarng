@@ -7,16 +7,7 @@ import { motion } from "framer-motion";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 
 export default function MobileMenu() {
-  const { dispatch, state, signOut } = useContext(AppContext);
-  const location = useLocation();
-
-  // Active Link
-  function pathMatch(route: string): boolean {
-    if (route === location.pathname) {
-      return true;
-    }
-    return false;
-  }
+  const { dispatch, state, signOut, pathMatch } = useContext(AppContext);
 
   // Animations
   const mobileMenu: {} = {
@@ -82,38 +73,16 @@ export default function MobileMenu() {
         }
       >
         <div className="menuLinks">
-          {!state.userInfo ? (
-            <Link
-              to="/signIn"
-              className={`${pathMatch("/signIn") && "activeNavLeft"}`}
-              onClick={() =>
-                dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })
-              }
-            >
-              Sign In
-            </Link>
-          ) : (
-            <Link
-              to="/signIn"
-              className={`${pathMatch("/signIn") && "activeNavLeft"}`}
-              onClick={() => {
-                dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU });
-                signOut();
-              }}
-            >
-              Sign Out
-            </Link>
-          )}
           <Link
             to="/new_arrivals"
-            className={`${pathMatch("/new_arrivals") && "activeNavLeft"}`}
+            className={`${pathMatch("/new_arrivals") && "activeMobileNav"}`}
             onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
           >
             New Arrivals
           </Link>
           <Link
             to="/sales"
-            className={`${pathMatch("/sales") && "activeNavLeft"}`}
+            className={`${pathMatch("/sales") && "activeMobileNav"}`}
             onClick={() => dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })}
           >
             Sales
@@ -123,11 +92,44 @@ export default function MobileMenu() {
               dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_SEARCH })
             }
             className={`mobileSearchBtn ${
-              state.openClose.isSearchOpen && "activeNavLeft"
+              state.openClose.isSearchOpen && "activeMobileNav"
             }`}
           >
             Search
           </p>
+          {
+            <Link
+              to="/account"
+              className={`${pathMatch("/account") && "activeMobileNav"}`}
+              onClick={() =>
+                dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })
+              }
+            >
+              Account
+            </Link>
+          }
+          {!state.userInfo ? (
+            <Link
+              to="/signIn"
+              className={`${pathMatch("/signIn") && "activeMobileNav"}`}
+              onClick={() =>
+                dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU })
+              }
+            >
+              Sign In
+            </Link>
+          ) : (
+            <Link
+              to="/signIn"
+              className={`${pathMatch("/signIn") && "activeMobileNav"}`}
+              onClick={() => {
+                dispatch({ type: REDUCER_ACTION_TYPES.CLOSE_MENU });
+                signOut();
+              }}
+            >
+              Sign Out
+            </Link>
+          )}
         </div>
         <div className="socialsLinks">
           <a href="https://wa.me/2347080598310" target="_blank">

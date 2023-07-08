@@ -40,6 +40,10 @@ const orderSchema = Schema(
       email: { type: String, required: true },
       phone: { type: Number, required: true },
     },
+    userId:{
+      type: String,
+      required: true,
+    },
     shippingDetails: {
       name: { type: String, required: true },
       address: { type: String, required: true },
@@ -54,12 +58,6 @@ const orderSchema = Schema(
       required: true,
       default: "PayStack",
     },
-    // paymentResult: {
-    //   id: { type: String },
-    //   status: { type: String },
-    //   update_time: { type: String },
-    //   email_address: { type: String },
-    // },
     itemsAmount: {
       type: Number,
       required: true,

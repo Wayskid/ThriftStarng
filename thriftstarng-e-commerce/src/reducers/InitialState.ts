@@ -6,6 +6,7 @@ export const INITIAL_STATE = {
   qtySelected: 1,
   isLoading: false,
   openClose: {
+    isNavMenuOpen: false,
     isSearchOpen: false,
     isMenuOpen: false,
     isCartOpen: false,
@@ -56,7 +57,7 @@ export const INITIAL_STATE = {
     email: "",
     password: "",
   },
-  userInfo: JSON.parse(localStorage.getItem("userInfo") || "false") || null,
+  userInfo: JSON.parse(localStorage.getItem("userInfo") || "false") || {},
   isPasswordShown: false,
   pagenation: 10,
   errorMsg: "",
