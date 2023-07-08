@@ -13,7 +13,7 @@ const app = express();
 app.use(json());
 
 const corsOrigin = {
-  origin: ["https://thriftstarng.netlify.app", "http://locahost:5173"],
+  origin: ["https://thriftstarng.netlify.app", "http://localhost:5173"],
   methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   optionSuccessStatus: 204,
   preflightContinue: false,
