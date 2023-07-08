@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "../sassStyles/account.scss";
 import { Link, Outlet } from "react-router-dom";
 import { AiOutlineSetting, AiOutlineUser } from "react-icons/ai";

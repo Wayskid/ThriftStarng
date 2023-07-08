@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { AiFillContacts } from "react-icons/ai";
-import { BiUserCircle, BiWorld } from "react-icons/bi";
+import { BiUserCircle } from "react-icons/bi";
 import { BsCalendarDate } from "react-icons/bs";
 import AppContext from "../contexts/AppContext";
 

@@ -1,6 +1,6 @@
 import "../sassStyles/nav.scss";
-import { Link, useLocation } from "react-router-dom";
-import { BiLogOut, BiUser } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import { BiUser } from "react-icons/bi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -10,7 +10,7 @@ import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import NavMenu from "../components/NavMenu";
 
 export default function Nav() {
-  const { state, pathMatch, signOut, dispatch } = useContext(AppContext);
+  const { state, pathMatch, dispatch } = useContext(AppContext);
 
   return (
     <nav className="nav">
