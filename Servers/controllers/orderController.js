@@ -16,11 +16,11 @@ export const createOrder = async (req, res) => {
       isPaid,
       paidAt,
     } = req.body;
-    
+
     const order = new Order({
       orderItems,
       userInfo,
-      userId,
+      userId: userId || "guest",
       shippingDetails,
       paymentMethod,
       itemsAmount,
@@ -39,13 +39,23 @@ export const createOrder = async (req, res) => {
 };
 
 // Get user orders
+export const getOrderInfo = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    const order = await Order.findById(orderId);
+    res.status(200).json(order);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+// Get user orders
 export const getUserOrders = async (req, res) => {
   try {
-    const {
-      userId
-    } = req.params;
-    
-    const orders = await Order.find({userId})
+    const { userId } = req.params;
+
+    const orders = await Order.find({ userId }).sort({ createdAt: 1 });
     res.status(200).json(orders);
   } catch (error) {
     res.status(400).json(error.message);

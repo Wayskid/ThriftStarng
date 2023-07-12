@@ -28,11 +28,8 @@ export default function ShippingInfo() {
         </p>
         <p className="shippingInfoText">
           {billingDetails.gift
-            ? billingDetails.giftFirstName
-            : billingDetails.firstName}{" "}
-          {billingDetails.gift
-            ? billingDetails.giftLastName
-            : billingDetails.lastName}
+            ? billingDetails.giftFullName
+            : billingDetails.fullName}
         </p>
         <p className="shippingInfoText">
           {billingDetails.gift

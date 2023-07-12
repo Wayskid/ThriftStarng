@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
 import "../sassStyles/cart.scss";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
+import AppButton from "../components/appButton/AppButton";
 
 export default function Cart() {
   const { state, dispatch } = useContext(AppContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
@@ -28,30 +30,46 @@ export default function Cart() {
         {!state.cartList.length ? (
           <p className="cartListEmpty">
             <HiOutlineShoppingBag className="emptyCartIcon" />
-            <br />
-            Bag is currently <br /> empty
+            Bag is currently empty
+            <AppButton
+              version="primaryBtn"
+              label="Shop Now"
+              onClick={() => {
+                dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_CART });
+                navigate("/new_arrivals");
+              }}
+            />
           </p>
         ) : (
           <>
             {state.cartList.map((cartItem, index) => {
-              return <CartItem key={index} cartItem={cartItem} />;
+              return (
+                <CartItem version="cart" key={index} cartItem={cartItem} showBtn={true} />
+              );
             })}
-            <h2 className="total">
+            <h3 className="total">
               Total:{" "}
               <b>#{state.cartAmounts.itemsAmount.toLocaleString("en-US")}</b>
-            </h2>
+            </h3>
+            <div className="cartButtons">
+              <AppButton
+                version="secondaryBtn"
+                label="Shop More"
+                onClick={() => {
+                  dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_CART });
+                  navigate("/new_arrivals");
+                }}
+              />
+              <AppButton
+                version="primaryBtn"
+                label="Checkout"
+                onClick={() => {
+                  navigate("/checkout");
+                }}
+              />
+            </div>
           </>
         )}
-        <div className="cartButtons">
-          <Link to="/new_arrivals" className="contShoppingBtn">
-            {state.cartList.length ? "Continue" : "Start"} Shopping
-          </Link>
-          {state.cartList.length > 0 && (
-            <Link to="/checkout" className="checkoutBtn">
-              Proceed to Checkout
-            </Link>
-          )}
-        </div>
       </ul>
     </div>
   );

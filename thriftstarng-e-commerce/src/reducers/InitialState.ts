@@ -22,8 +22,7 @@ export const INITIAL_STATE = {
   billingDetails: JSON.parse(
     localStorage.getItem("billingDetails") || "false"
   ) || {
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     phone: "",
     country: "United Kingdom",
@@ -34,8 +33,7 @@ export const INITIAL_STATE = {
     createAccount: false,
     gift: false,
     orderNote: "",
-    giftFirstName: "",
-    giftLastName: "",
+    giftFullName: "",
     giftCountry: "United Kingdom",
     giftAddress: "",
     giftCity: "",
@@ -57,6 +55,7 @@ export const INITIAL_STATE = {
     email: "",
     password: "",
   },
+  token: JSON.parse(localStorage.getItem("token") || "false") || "",
   userInfo: JSON.parse(localStorage.getItem("userInfo") || "false") || {},
   isPasswordShown: false,
   pagenation: 10,

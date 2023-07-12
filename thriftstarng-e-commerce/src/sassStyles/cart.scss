@@ -2,162 +2,61 @@
 
 .cart {
   display: grid;
-  padding: 5.5rem 1rem;
-  min-height: 100vh;
-  grid-template-rows: 5rem 80%;
+  padding: 6rem 1rem 2rem;
   gap: 2rem;
-
-  @include desktop {
-    padding-block: 5rem 3rem;
-  }
+  width: min(60rem, 100%);
+  justify-self: center;
+  align-content: start;
 
   &Header {
     display: grid;
-    align-items: center;
     text-align: center;
 
     @include desktop {
       display: flex;
       justify-content: space-between;
-      justify-self: center;
-      width: min(65rem, 100%);
     }
 
     .productCount {
+      font-size: 14px;
       color: $primary;
+
+      b {
+        font-size: 17px;
+      }
     }
   }
 
   &List {
     display: grid;
-    gap: 1.5rem;
     text-align: center;
-    @include desktop {
-      padding-inline: 1rem;
-    }
+    gap: 1rem;
 
     &Empty {
-      align-self: center;
-      text-align: center;
-      font-size: 35px;
-      color: rgb(140, 137, 137);
-
-      .emptyCartIcon{
-        font-size: 60px;
-      }
-
-      a{
-        @include buttonsStyles($primary);
-        padding: 0.7rem 1.5rem;
-      }
-    }
-
-    .cartItem {
       display: grid;
-      gap: 0.5rem;
-      align-items: center;
-      text-align: center;
-      box-shadow: 0px 2px 5px -2px grey;
-      position: relative;
-      width: min(20rem, 100%);
-      justify-self: center;
-      height: 17rem;
-      color: $secondary;
-      padding-block: 0.5rem;
+      gap: 1rem;
+      justify-items: center;
+      align-content: space-between;
+      font-size: 35px;
+      color: rgb(158, 156, 156);
+      padding-top: 5rem;
 
-      @include desktop {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        width: min(60rem, 100%);
-        padding: 1rem;
-        height: 10rem;
-      }
-
-      .imgWrap {
-        height: 8rem;
-
-        @include desktop {
-          height: 8rem;
-        }
-
-        img {
-          height: 100%;
-          width: 80%;
-          object-fit: cover;
-
-          @include tablet {
-            height: 100%;
-            width: 80%;
-          }
-
-          @include desktop {
-            height: 100%;
-            width: 100%;
-          }
-        }
-      }
-
-      .qtyST {
-        display: flex;
-        justify-self: center;
-        align-items: center;
-        gap: 1rem;
-
-        @include desktop {
-          display: grid;
-        }
-      }
-
-      .deleteCartItemBtn {
-        position: absolute;
-        top: -13px;
-        right: -13px;
-        border: none;
-        background: none;
-        cursor: pointer;
-        color: $primary;
-
-        & > * {
-          font-size: 30px;
-        }
-
-        &:hover {
-          color: #f93dc7;
-        }
+      .emptyCartIcon {
+        font-size: 5rem;
       }
     }
 
     .total {
       border-bottom: 2px solid rgba(128, 128, 128, 0.477);
-      padding: 0.8rem 1.5rem 0.6rem 0;
-      width: min(60rem, 100%);
-      justify-self: center;
-
-      @include desktop{
-        text-align: right;
-      }
+      text-align: right;
+      padding-bottom: 1rem;
     }
 
     .cartButtons {
-      display: grid;
-      justify-self: center;
+      display: flex;
+      justify-self: right;
       gap: 1rem;
       align-self: flex-end;
-
-      @include desktop {
-        display: flex;
-        gap: 3rem;
-      }
-
-      .contShoppingBtn {
-        @include buttonsStyles($secondary);
-        padding: 1rem 5rem;
-      }
-
-      .checkoutBtn {
-        @include buttonsStyles($primary);
-        padding: 1rem 5rem;
-      }
     }
   }
 }

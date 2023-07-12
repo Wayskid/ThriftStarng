@@ -26,6 +26,7 @@ import Billing from "./pages/Billing";
 import OrderHistory from "./pages/OrderHistory";
 import PersonalInfo from "./pages/PersonalInfo";
 import Settings from "./pages/Settings";
+import OrderInfo from "./pages/OrderInfo";
 
 function App() {
   const { state } = useContext(AppContext);
@@ -39,11 +40,11 @@ function App() {
         <Route path="new_arrivals" element={<NewArrivals />}></Route>
         <Route
           path="signIn"
-          element={state.userInfo ? <Navigate to={"/"} /> : <SignIn />}
+          element={state.token ? <Navigate to={"/"} /> : <SignIn />}
         ></Route>
         <Route
           path="signUp"
-          element={state.userInfo ? <Navigate to={"/"} /> : <SignUp />}
+          element={state.token ? <Navigate to={"/"} /> : <SignUp />}
         ></Route>
         <Route path="cart" element={<Cart />}></Route>
         <Route path="contact" element={<Contact />}></Route>
@@ -57,7 +58,11 @@ function App() {
             state.cartList.length ? <Checkout /> : <Navigate to="/cart" />
           }
         />
-        <Route path="/account" element={<Account />}>
+        <Route path="orders/:orderId" element={<OrderInfo />}></Route>
+        <Route
+          path="account"
+          element={state.token ? <Account /> : <Navigate to={"/signIn"} />}
+        >
           <Route index element={<PersonalInfo />}></Route>
           <Route path="billing" element={<Billing />}></Route>
           <Route path="orderHistory" element={<OrderHistory />}></Route>

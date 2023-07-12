@@ -10,6 +10,28 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
+// Get new arrives
+export const getNewProducts = async (req, res) => {
+  try {
+    const products = await Products.find({}).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+// Get sales products
+export const getSalesProducts = async (req, res) => {
+  try {
+    const products = await Products.find({ discount: 10 });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
 // Get one product
 export const getOneProduct = async (req, res) => {
   try {

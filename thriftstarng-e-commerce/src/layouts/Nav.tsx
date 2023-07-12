@@ -78,7 +78,7 @@ export default function Nav() {
           </p>
         </Link>
         <ul className="navMainRight">
-          {!state.userInfo ? (
+          {!state.token ? (
             <Link
               to="/signIn"
               className={`${pathMatch("/signIn") && "activeNavRight"}`}
@@ -132,11 +132,6 @@ export default function Nav() {
           </div>
         </ul>
       </div>
-
-      {/* Mobile Menu */}
-
-      {/* Cart Menu */}
-
       <a
         href="https://wa.me/2347080598310"
         target="_blank"

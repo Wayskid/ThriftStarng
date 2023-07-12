@@ -2,12 +2,14 @@ import "../sassStyles/wish.scss";
 import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
-import WishItem from "../components/WishItem";
 import { AiOutlineHeart } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CartItem from "../components/CartItem";
+import AppButton from "../components/appButton/AppButton";
 
 export default function WishList() {
   const { state, dispatch } = useContext(AppContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
@@ -28,20 +30,30 @@ export default function WishList() {
         {!state.wishList.length ? (
           <p className="wishListEmpty">
             <AiOutlineHeart className="emptyWishIcon" />
-            <br />
             Wishlist is currently empty
-            <br />
+            <AppButton
+              version="primaryBtn"
+              label="Shop Now"
+              onClick={() => {
+                dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_CART });
+                navigate("/new_arrivals");
+              }}
+            />
           </p>
         ) : (
           <>
             {state.wishList.map((wishItem, index) => {
-              return <WishItem key={index} wishItem={wishItem} />;
+              return (
+                <CartItem
+                  key={index}
+                  cartItem={wishItem}
+                  showBtn={true}
+                  version={"wish"}
+                />
+              );
             })}
           </>
         )}
-        <Link to={"/new_arrivals"} className="contShoppingBtn">
-          {state.wishList.length ? "Continue" : "Start"} Shopping
-        </Link>
       </ul>
     </div>
   );

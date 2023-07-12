@@ -65,6 +65,11 @@ export function AppReducer(state: INITIAL_STATE_TYPES, action: ActionTypes) {
           [action.field]: action.payload,
         },
       };
+    case REDUCER_ACTION_TYPES.UPDATE_BILLING_DETAILS:
+      return {
+        ...state,
+        billingDetails: action.payload,
+      };
     case REDUCER_ACTION_TYPES.SIGNUP_INPUTS:
       return {
         ...state,
@@ -80,6 +85,11 @@ export function AppReducer(state: INITIAL_STATE_TYPES, action: ActionTypes) {
           ...state.signInInputs,
           [action.field]: action.payload,
         },
+      };
+    case REDUCER_ACTION_TYPES.GET_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
       };
     case REDUCER_ACTION_TYPES.GET_USER_INFO:
       return {

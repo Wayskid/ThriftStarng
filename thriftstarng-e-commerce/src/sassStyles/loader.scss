@@ -2,10 +2,10 @@
 
 $spinner: $primary;
 $background: white;
-$size: 60px;
+$size: 30px;
 
 .spinner {
-  position: absolute;
+  // position: absolute;
   justify-self: center;
   align-self: center;
   width: $size;

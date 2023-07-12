@@ -8,11 +8,10 @@
   width: 100%;
 
   &Label {
-    display: block;
-    font-size: 14px;
-    font-weight: 300;
-    text-align: left;
     display: flex;
+    color: gray;
+    font-size: 13px;
+    text-align: left;
 
     &::after {
       content: "*";
@@ -28,7 +27,8 @@
     flex-direction: row;
     border-radius: 2px;
     overflow: hidden;
-    border: 0.5px solid grey;
+    border: none;
+    border-bottom: 1px solid $primary;
     
 
     input {
@@ -36,20 +36,19 @@
       padding: 0.4rem 0.4rem;
       width: 100%;
       font-family: inherit;
-      font-size: 17px;
+      font-size: 18px;
       border: none;
     }
 
     button {
-      @include buttonsStyles($secondary);
+      background: none;
       cursor: pointer;
       border: none;
-      font-size: 20px;
-      color: white;
-      border-radius: 0;
+      font-size: 25px;
+      color: $primary;
       display: grid;
       align-content: center;
-      padding-inline: 0.4rem;
+      padding-inline: 0.2rem;
     }
   }
 }

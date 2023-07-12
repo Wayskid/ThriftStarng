@@ -1,0 +1,50 @@
+@import "../../sassStyles/variables";
+
+//Global button style
+.appBtn {
+  $hover-color: scale-color(#ba59d0, $lightness: 3%);
+  background-color: $primary;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-family: inherit;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 2.5rem;
+  padding-inline: 1rem;
+  display: grid;
+  place-content: center;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-color;
+    transition: all ease-in 0.2s;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+//Versions
+.primaryBtn {
+  background-color: $primary;
+}
+
+.secondaryBtn {
+  background-color: $secondary;
+}
+
+.textOnly {
+  background: none;
+  font-size: 20px;
+  color: $primary;
+  height: unset;
+  padding: 0;
+  border-radius: 0;
+  border-bottom: 2px solid $primary;
+
+  &:hover:not(:disabled) {
+    background: none;
+  }
+}

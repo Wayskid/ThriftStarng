@@ -4,6 +4,8 @@ import axios from "axios";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import GiftBillingDetails from "./GiftBillingDetails";
 import { ComboBox, Item } from "./react-aria/MySelect";
+import AppInput from "./appInput/AppInput";
+import AppButton from "./appButton/AppButton";
 
 export default function BillingDetails() {
   const { state, dispatch, handleBillingDetails } = useContext(AppContext);
@@ -33,161 +35,138 @@ export default function BillingDetails() {
   return (
     <form className="billingDetails" onSubmit={handleBillingDetails}>
       <div className="billingDetailsForm">
+        <AppInput
+          type="text"
+          id="fullName"
+          name="fullName"
+          version="formInput"
+          required={true}
+          value={state.billingDetails.fullName}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
+              type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+              field: e.target.name,
+              payload: e.target.value,
+            });
+          }}
+          label="Full Name"
+        />
         <div className="inputFlexNames">
-          <div className="formInputDiv">
-            <label className="fstName" htmlFor="firstname">
-              First Name
-            </label>
-            <input
-              required
-              type="text"
-              name="firstName"
-              value={state.billingDetails.firstName}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                console.log(typeof e.target.name);
-                dispatch({
-                  type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                  field: e.target.name,
-                  payload: e.target.value,
-                });
-              }}
-            />
-          </div>
-          <div className="formInputDiv">
-            <label htmlFor="lastname">Last Name</label>
-            <input
-              required
-              type="text"
-              name="lastName"
-              value={state.billingDetails.lastName}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                dispatch({
-                  type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                  field: e.target.name,
-                  payload: e.target.value,
-                })
-              }
-            />
-          </div>
-        </div>
-        <div className="formInputDiv">
-          <label htmlFor="email">Email</label>
-          <input
-            required
-            type="email"
-            name="email"
-            value={state.billingDetails.email}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              dispatch({
-                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                field: e.target.name,
-                payload: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="inputFlexNames">
-          <div className="formInputDiv">
-            <label htmlFor="phone">Phone</label>
-            <input
-              required
-              type="number"
-              name="phone"
-              value={state.billingDetails.phone}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                dispatch({
-                  type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                  field: e.target.name,
-                  payload: e.target.value,
-                })
-              }
-            />
-          </div>
-          <ComboBox
-            label="Country / Region"
-            name="Country"
-            selectedKey={state.billingDetails.country}
-            onSelectionChange={(key) =>
-              dispatch({
-                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                field: "country",
-                payload: key,
-              })
-            }
-          >
-            {state.countryList &&
-              state.countryList.map((country) => {
-                return <Item key={country}>{country}</Item>;
-              })}
-          </ComboBox>
-        </div>
-        <div className="formInputDiv">
-          <label htmlFor="address">Address</label>
-          <input
-            required
+          <AppInput
             type="text"
-            name="address"
-            value={state.billingDetails.address}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            id="email"
+            name="email"
+            version="formInput"
+            required={true}
+            value={state.billingDetails.email}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               dispatch({
                 type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
                 field: e.target.name,
                 payload: e.target.value,
-              })
-            }
+              });
+            }}
+            label="Email"
+          />
+          <AppInput
+            type="text"
+            id="phone"
+            name="phone"
+            version="formInput"
+            required={true}
+            value={state.billingDetails.phone}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+                field: e.target.name,
+                payload: e.target.value,
+              });
+            }}
+            label="Phone"
           />
         </div>
+        <ComboBox
+          label="Country / Region"
+          name="Country"
+          selectedKey={state.billingDetails.country}
+          onSelectionChange={(key) =>
+            dispatch({
+              type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+              field: "country",
+              payload: key,
+            })
+          }
+        >
+          {state.countryList &&
+            state.countryList.map((country) => {
+              return <Item key={country}>{country}</Item>;
+            })}
+        </ComboBox>
+        <AppInput
+          type="text"
+          id="address"
+          name="address"
+          version="formInput"
+          required={true}
+          value={state.billingDetails.address}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
+              type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+              field: e.target.name,
+              payload: e.target.value,
+            });
+          }}
+          label="Address"
+        />
         <div className="inputFlex">
-          <div className="formInputDiv">
-            <label htmlFor="city">Town / City</label>
-            <input
-              required
-              type="text"
-              name="city"
-              value={state.billingDetails.city}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                dispatch({
-                  type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                  field: e.target.name,
-                  payload: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="formInputDiv">
-            <label htmlFor="state">State / Province</label>
-            <input
-              required
-              type="text"
-              name="state"
-              value={state.billingDetails.state}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                dispatch({
-                  type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                  field: e.target.name,
-                  payload: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div className="formInputDiv">
-            <label htmlFor="postcode" className="postcode">
-              Postcode
-            </label>
-            <input
-              required
-              type="text"
-              name="postcode"
-              value={state.billingDetails.postcode}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                dispatch({
-                  type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                  field: e.target.name,
-                  payload: e.target.value,
-                })
-              }
-            />
-          </div>
+          <AppInput
+            type="text"
+            id="city"
+            name="city"
+            version="formInput"
+            required={true}
+            value={state.billingDetails.city}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+                field: e.target.name,
+                payload: e.target.value,
+              });
+            }}
+            label="Town / City"
+          />
+          <AppInput
+            type="text"
+            id="state"
+            name="state"
+            version="formInput"
+            required={true}
+            value={state.billingDetails.state}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+                field: e.target.name,
+                payload: e.target.value,
+              });
+            }}
+            label="State / Province"
+          />
+          <AppInput
+            type="text"
+            id="postcode"
+            name="postcode"
+            version="formInput"
+            required={true}
+            value={state.billingDetails.postcode}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+                field: e.target.name,
+                payload: e.target.value,
+              });
+            }}
+            label="Postcode"
+          />
         </div>
         <div className="checkAllow">
           <input
@@ -238,7 +217,7 @@ export default function BillingDetails() {
           ></textarea>
         </div>
         <div className="billingDetailsBtn">
-          <button className="contToPayment">Save and Continue</button>
+          <AppButton version="primaryBtn" label="Save and Continue" />
         </div>
       </div>
     </form>

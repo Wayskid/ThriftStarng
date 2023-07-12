@@ -16,10 +16,13 @@ dataImport.post(
   })
 );
 
-dataImport.post("/product", asyncHandler(async (req, res) => {
-  await Product.deleteMany({});
-  const productImport = await Product.insertMany(products);
-  res.send({ productImport });
-}));
+dataImport.post(
+  "/product",
+  asyncHandler(async (req, res) => {
+    await Product.deleteMany({});
+    const productImport = await Product.insertMany(products);
+    res.send({ productImport });
+  })
+);
 
 export default dataImport;

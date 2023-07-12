@@ -1,12 +1,14 @@
+import "../sassStyles/itemCard.scss";
 import { AiOutlineHeart } from "react-icons/ai";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ProductType } from "../Types";
 import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
 
 export default function ItemCard({ product }: { product: ProductType }) {
   const { addToCart, addToWish } = useContext(AppContext);
+  const navigate = useNavigate();
 
   return (
     <motion.li
@@ -16,9 +18,9 @@ export default function ItemCard({ product }: { product: ProductType }) {
       className="itemCard"
     >
       <div className="itemCardTop">
-        <Link to={`/products/${product._id}`}>
+        <div onClick={() => navigate(`/products/${product._id}`)}>
           <img src={product.image} alt="gown one" />
-        </Link>
+        </div>
         <div className="itemCardDetailsWrap">
           <div className="nameSize">
             <p className="itemCategory">{product.name}</p> &#8211;
@@ -39,6 +41,7 @@ export default function ItemCard({ product }: { product: ProductType }) {
       >
         Add To Bag
       </button>
+      {product.stockCount === 0 && <div className="badgeSoldOut">SOLD</div>}
     </motion.li>
   );
 }

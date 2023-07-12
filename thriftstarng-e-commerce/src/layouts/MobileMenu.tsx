@@ -97,7 +97,7 @@ export default function MobileMenu() {
           >
             Search
           </p>
-          {
+          {state.token && (
             <Link
               to="/account"
               className={`${pathMatch("/account") && "activeMobileNav"}`}
@@ -107,8 +107,8 @@ export default function MobileMenu() {
             >
               Account
             </Link>
-          }
-          {!state.userInfo ? (
+          )}
+          {!state.token ? (
             <Link
               to="/signIn"
               className={`${pathMatch("/signIn") && "activeMobileNav"}`}

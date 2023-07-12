@@ -1,13 +1,21 @@
 import "../sassStyles/search.scss";
-import { ChangeEvent, useContext, useEffect } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import SearchResult from "../components/SearchResult";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import { BsX } from "react-icons/bs";
+import axios from "axios";
+import Loader from "../components/Loader";
+import { ProductType } from "../Types";
+import ShopList from "../components/ShopList";
 
 export default function Search() {
-  const { state, dispatch, handleSearch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
+  const [searchVal, setSearchVal] = useState("");
+  const [searchResult, setSearchResult] = useState<ProductType[]>(
+    [] as ProductType[]
+  );
+  const [loading, setLoading] = useState(false);
 
   const searchAnim = {
     initial: {
@@ -38,6 +46,26 @@ export default function Search() {
     }
   }, [dispatch, state.openClose.isSearchOpen]);
 
+  //Handle Search
+  async function handleSearch(e: ChangeEvent<HTMLInputElement>) {
+    setSearchVal(e.target.value);
+    if (e.target.value.trim()) {
+      try {
+        setLoading(true);
+
+        const { data } = await axios.get(
+          `http://localhost:3000/api/products/q/search?keyword=${e.target.value.trim()}`
+        );
+
+        setLoading(false);
+        setSearchResult(data);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    }
+  }
+
   return (
     <motion.div
       className="search"
@@ -45,33 +73,34 @@ export default function Search() {
       animate={state.openClose.isSearchOpen ? "anim" : "initial"}
     >
       <div className="searchTop">
-        <h1>Search</h1>
+        <h1>Search ThriftStarng</h1>
         <form className="searchBtnInput">
           <input
             type="text"
             id="search"
-            value={state.searchKeyword}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleSearch(e.target.value)
-            }
+            value={searchVal}
+            onChange={handleSearch}
             placeholder="Type your search"
           />
         </form>
-        {state.searchKeyword.length < 3 && (
-          <p className="inputUnderNote">
-            Please enter at least 3 characters to search
-          </p>
-        )}
-        {state.searchKeyword.length >= 3 && state.searchResult.length > 0 && (
-          <p className="inputUnderNote">
-            Showing {state.searchResult.length} result
-            {state.searchResult.length > 1 ? "s" : ""} matching "
-            {state.searchKeyword}"
-          </p>
+        {searchVal.trim() && (
+          <p className="inputUnderNote">Showing result for "{searchVal}"</p>
         )}
       </div>
-      <SearchResult />
-
+      <div className="searchResult">
+        {searchVal.trim() ? (
+          loading ? (
+            <Loader />
+          ) : (
+            <ShopList products={searchResult} />
+          )
+        ) : (
+          <h1>Tell us the type of clothes you're looking for</h1>
+        )}
+        {!loading && !searchResult.length && searchVal.trim() && (
+          <h1>No Clothes found</h1>
+        )}
+      </div>
       <button
         className="closeSearch"
         onClick={() =>

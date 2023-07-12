@@ -1,10 +1,11 @@
 import "../sassStyles/cartMenu.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsX } from "react-icons/bs";
 import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import { motion } from "framer-motion";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
+import AppButton from "../components/appButton/AppButton";
 
 export default function CartMenu() {
   const { state, dispatch } = useContext(AppContext);
@@ -118,25 +119,23 @@ export default function CartMenu() {
           <h2>#{state.cartAmounts.itemsAmount.toLocaleString("en-US")}</h2>
         </div>
         <div className="cartMenuBtns">
-          <Link
-            to="/cart"
-            className="cartMenuViewCartBtn"
-            onClick={() =>
-              dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_CART })
-            }
-          >
-            View Bag
-          </Link>
-          <button
-            className="cartMenuCheckoutBtn"
+          <AppButton
+            version="primaryBtn"
+            label={"View Bag"}
+            onClick={() => {
+              dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_CART });
+              navigate("/cart");
+            }}
+          />
+          <AppButton
+            version="secondaryBtn"
+            label="Checkout"
+            isDisabled={state.cartList.length ? false : true}
             onClick={() => {
               dispatch({ type: REDUCER_ACTION_TYPES.OPEN_CLOSE_CART });
               navigate("/checkout");
             }}
-            disabled={state.cartList.length ? false : true}
-          >
-            Checkout
-          </button>
+          />
         </div>
         <motion.button
           className="closeCartBtn"

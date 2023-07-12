@@ -2,75 +2,143 @@
 
 .account {
   display: grid;
-  padding: 5.5rem 1rem 1rem;
+  padding: 6rem 1rem 2rem;
   align-items: start;
-  gap: 1.5rem;
-
-  @include desktop {
-    padding-block: 5rem 1rem;
-  }
+  gap: 2rem;
+  width: min(65rem, 100%);
+  justify-self: center;
 
   &Header {
+    font-size: 28px;
+    font-weight: 500;
     text-align: center;
 
     @include desktop {
       text-align: left;
-      justify-self: center;
-      width: min(65rem, 100%);
     }
   }
 
-  .introRoutes {
+  .accountFlex {
     display: grid;
-    justify-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
 
-    .accountIntro {
+    @include desktop {
+      gap: 0;
+      grid-template-columns: 20rem calc(100% - 20rem);
+    }
+
+    .introRoutes {
       display: grid;
-      text-align: center;
+      justify-items: center;
+      align-self: start;
 
-      .userName {
-        margin-top: 1rem;
-        font-size: 22px;
-        font-weight: 500;
+      @include desktop {
+        display: grid;
+        justify-items: left;
+        gap: 2rem;
       }
 
-      .userEmail {
-        font-size: 15px;
+      .accountIntro {
+        display: grid;
+        text-align: center;
+
+        @include desktop {
+          text-align: left;
+        }
+
+        .userName {
+          margin-block: 1rem 0.4rem;
+          font-size: 22px;
+          font-weight: 500;
+        }
+
+        .userEmail {
+          font-size: 15px;
+          color: rgb(109, 109, 109);
+        }
+
+        .userPic {
+          display: grid;
+          border-radius: 50%;
+          background-color: rgb(220, 220, 220);
+          position: relative;
+          justify-items: center;
+          align-items: center;
+          width: 10rem;
+          height: 10rem;
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            top: 1.5rem;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            width: 85px;
+            height: 35px;
+            border-radius: 150px 150px 0 0;
+            border-color: white white white white;
+            border-style: solid solid none solid;
+            border-width: 5px;
+            top: 5rem;
+          }
+
+          img {
+            z-index: 5;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .accountRoutes {
+        display: none;
+        color: grey;
+
+        @include desktop {
+          display: grid;
+          gap: 1rem;
+          font-size: 28px;
+          font-weight: 500;
+        }
+
+        .activeAccountRoute {
+          color: $primary;
+        }
+      }
+    }
+
+    .accountNav {
+      display: flex;
+      justify-content: space-around;
+
+      @include desktop {
+        display: none;
+      }
+
+      & > * {
+        width: 3rem;
+        height: 3rem;
+        display: grid;
+        place-items: center;
+        font-size: 25px;
+        border-radius: 50%;
+        border: 1px solid $primary;
         color: rgb(109, 109, 109);
       }
 
-      img {
-        width: 12rem;
-        height: 12rem;
-        object-fit: cover;
-        border-radius: 50%;
+      .activeAccountNav {
+        color: white;
+        background-color: $primary;
       }
     }
-
-    .accountRoutes {
-      display: none;
-    }
-  }
-
-  .accountNav {
-    display: flex;
-    justify-content: space-between;
-
-    & > * {
-      width: 3rem;
-      height: 3rem;
-      display: grid;
-      place-items: center;
-      font-size: 25px;
-      border-radius: 50%;
-      border: 1px solid $primary;
-      color: rgb(109, 109, 109);
-    }
-  }
-
-  .activeAccountNav {
-    color: white;
-    background-color: $primary;
   }
 }

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { BsX } from "react-icons/bs";
 
 export default function Filter() {
-  const { state, dispatch, handleFilter, getProducts } = useContext(AppContext);
+  const { state, dispatch, handleFilter } = useContext(AppContext);
 
   const filterAnim = {
     initial: {
@@ -209,7 +209,6 @@ export default function Filter() {
             dispatch({
               type: REDUCER_ACTION_TYPES.OPEN_CLOSE_FILTER,
             });
-            getProducts();
           }}
         >
           Clear

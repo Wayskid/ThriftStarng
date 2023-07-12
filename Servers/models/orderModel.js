@@ -40,9 +40,8 @@ const orderSchema = Schema(
       email: { type: String, required: true },
       phone: { type: Number, required: true },
     },
-    userId:{
+    userId: {
       type: String,
-      required: true,
     },
     shippingDetails: {
       name: { type: String, required: true },

@@ -47,8 +47,7 @@ export interface INITIAL_STATE_TYPES {
   pageTitle: String;
   countryList: string[];
   billingDetails: {
-    firstName: string;
-    lastName: string;
+    fullName: string;
     email: string;
     phone: string;
     country: string;
@@ -59,13 +58,12 @@ export interface INITIAL_STATE_TYPES {
     createAccount: boolean;
     gift: boolean;
     orderNote: string;
-    giftFirstName?: string;
-    giftLastName?: string;
-    giftCountry?: string;
-    giftAddress?: string;
-    giftCity?: string;
-    giftState?: string;
-    giftPostcode?: string;
+    giftFullName: string;
+    giftCountry: string;
+    giftAddress: string;
+    giftCity: string;
+    giftState: string;
+    giftPostcode: string;
   };
   cartAmounts: {
     itemsAmount: number;
@@ -82,12 +80,28 @@ export interface INITIAL_STATE_TYPES {
     email: string;
     password: string;
   };
+  token: string;
   userInfo: {
     _id: string;
     name: string;
     email: string;
+    billingDetails: {
+      fullName: string;
+      email: string;
+      phone: string;
+      country: string;
+      address: string;
+      city: string;
+      state: string;
+      postcode: string;
+    };
+    personalInfo: {
+      dob: string;
+      country: string;
+      phone: string;
+      profilePic: string;
+    };
     isAdmin: boolean;
-    token: string;
   };
   isPasswordShown: boolean;
   pagenation: number;
@@ -124,23 +138,20 @@ export interface OrderInfoTypes {
   tax: number;
   totalAmount: number;
   isPaid: boolean;
+  paymentMethod: string;
   paidAt: number;
+  createdAt: number;
 }
 
 export type UseAppContextType = {
   state: INITIAL_STATE_TYPES;
   dispatch: React.Dispatch<ActionTypes>;
   pathMatch: (route: string) => boolean;
-  getProducts: () => void;
-  getSingleProduct: (id: String | undefined) => void;
   addToCart: (qty: Number, id: String) => void;
   addToWish: (qty: Number, id: String) => void;
-  signUp: (e: FormEvent) => void;
-  signIn: (e: FormEvent) => void;
   getProfile: () => void;
   signOut: () => void;
   handleBillingDetails: (e: FormEvent) => void;
   handleOrder: (reference: Object) => void;
-  handleSearch: (e: String) => void;
   handleFilter: () => void;
 };

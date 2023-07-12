@@ -1,0 +1,43 @@
+@import "../../sassStyles/variables";
+
+//Versions
+
+.formInput {
+  position: relative;
+  height: 3rem;
+  input {
+    border: none;
+    border-bottom: 1px solid $primary;
+    width: 100%;
+    font-size: 18px;
+    padding: 0.8rem 0.3rem 0.2rem 0.3rem;
+    outline: none;
+
+    &:focus ~ label,
+    &:valid ~ label {
+      translate: -5px -1.7rem;
+      font-size: 13px;
+      font-weight: 400;
+    }
+  }
+
+  label {
+    color: gray;
+    font-size: 18px;
+    position: absolute;
+    left: 0.3rem;
+    bottom: 0.9rem;
+    transition: 0.3s ease;
+  }
+
+  button{
+    position: absolute;
+    background: none;
+    border: none;
+    color: $primary;
+    font-size: 19px;
+    bottom: 0.8rem;
+    right: 0.2rem;
+    cursor: pointer;
+  }
+}

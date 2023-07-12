@@ -5,7 +5,6 @@
   justify-self: center;
   display: grid;
   color: $secondary;
-  min-height: 100%;
   align-content: baseline;
 
   .showcase {
@@ -39,14 +38,81 @@
           font-size: 60px;
         }
       }
+    }
+  }
 
-      .showcaseBtn {
-        @include buttonsStyles($primary);
-        padding: 0.8rem 1rem;
-        font-size: 16px;
-        border-radius: 8px;
+  .shopSection {
+    display: grid;
+    padding: 1rem;
+    position: relative;
+    min-height: 20rem;
+    align-content: baseline;
+    gap: 1.5rem;
+    justify-items: center;
+
+    &Top {
+      width: min(70rem, 100%);
+      display: flex;
+      justify-self: center;
+      justify-content: space-between;
+      align-items: center;
+
+      .catSelected {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        background: none;
+        border: none;
+        font-size: 17px;
+        cursor: pointer;
+        color: $secondary;
+
+        span {
+          font-size: 25px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .skeletonLoaders {
+    width: min(70rem, 85%);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    justify-self: center;
+    gap: 1.5rem;
+
+    .skeletonLoader {
+      display: grid;
+      box-shadow: 0px 1px 5px 1px rgba(128, 128, 128, 0.13);
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+
+      .imgSkeleton {
+        width: 100%;
+        height: 16.1rem;
+      }
+
+      .titleSkeleton {
+        width: 75%;
+        justify-self: center;
+        height: 0.7rem;
+        border-radius: 5px;
+      }
+
+      .priceSkeleton {
+        justify-self: center;
+        width: 50%;
+        height: 0.7rem;
+        border-radius: 5px;
       }
     }
   }
 }
-

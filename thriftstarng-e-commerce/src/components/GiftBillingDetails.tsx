@@ -2,48 +2,29 @@ import { ChangeEvent, useContext } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import { ComboBox, Item } from "./react-aria/MySelect";
+import AppInput from "./appInput/AppInput";
 
 export default function GiftBillingDetails() {
   const { state, dispatch } = useContext(AppContext);
 
   return (
     <>
-      <div className="inputFlexNames">
-        <div className="formInputDiv">
-          <label className="firstName" htmlFor="giftFirstName">
-            First Name
-          </label>
-          <input
-            required
-            type="text"
-            name="giftFirstName"
-            value={state.billingDetails.giftFirstName}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              dispatch({
-                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                field: e.target.name,
-                payload: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="formInputDiv">
-          <label htmlFor="giftLastName">Last Name</label>
-          <input
-            required
-            type="text"
-            name="giftLastName"
-            value={state.billingDetails.giftLastName}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              dispatch({
-                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                field: e.target.name,
-                payload: e.target.value,
-              })
-            }
-          />
-        </div>
-      </div>
+      <AppInput
+        type="text"
+        id="giftFullName"
+        name="giftFullName"
+        version="formInput"
+        required={true}
+        value={state.billingDetails.giftFullName}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          dispatch({
+            type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+            field: e.target.name,
+            payload: e.target.value,
+          });
+        }}
+        label="Full Name"
+      />
       <ComboBox
         label="Country / Region"
         name="Country"
@@ -61,73 +42,71 @@ export default function GiftBillingDetails() {
             return <Item key={country}>{country}</Item>;
           })}
       </ComboBox>
-      <div className="formInputDiv">
-        <label htmlFor="giftAddress">Address</label>
-        <input
-          required
+      <AppInput
+        type="text"
+        id="giftAddress"
+        name="giftAddress"
+        version="formInput"
+        required={true}
+        value={state.billingDetails.giftAddress}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          dispatch({
+            type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+            field: e.target.name,
+            payload: e.target.value,
+          });
+        }}
+        label="Address"
+      />
+      <div className="inputFlex">
+        <AppInput
           type="text"
-          name="giftAddress"
-          value={state.billingDetails.giftAddress}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          id="giftCity"
+          name="giftCity"
+          version="formInput"
+          required={true}
+          value={state.billingDetails.giftCity}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             dispatch({
               type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
               field: e.target.name,
               payload: e.target.value,
-            })
-          }
+            });
+          }}
+          label="Town / City"
         />
-      </div>
-      <div className="inputFlex">
-        <div className="formInputDiv">
-          <label htmlFor="giftCity">Town / City</label>
-          <input
-            required
-            type="text"
-            name="giftCity"
-            value={state.billingDetails.giftCity}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              dispatch({
-                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                field: e.target.name,
-                payload: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="formInputDiv">
-          <label htmlFor="giftState">State</label>
-          <input
-            required
-            type="text"
-            name="giftState"
-            value={state.billingDetails.giftState}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              dispatch({
-                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                field: e.target.name,
-                payload: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="formInputDiv">
-          <label htmlFor="giftPostcode" className="postcode">
-            Postcode
-          </label>
-          <input
-            required
-            type="text"
-            name="giftPostcode"
-            value={state.billingDetails.giftPostcode}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              dispatch({
-                type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
-                field: e.target.name,
-                payload: e.target.value,
-              })
-            }
-          />
-        </div>
+        <AppInput
+          type="text"
+          id="giftState"
+          name="giftState"
+          version="formInput"
+          required={true}
+          value={state.billingDetails.giftState}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
+              type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+              field: e.target.name,
+              payload: e.target.value,
+            });
+          }}
+          label="State / Province"
+        />
+        <AppInput
+          type="text"
+          id="giftPostcode"
+          name="giftPostcode"
+          version="formInput"
+          required={true}
+          value={state.billingDetails.giftPostcode}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
+              type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
+              field: e.target.name,
+              payload: e.target.value,
+            });
+          }}
+          label="Postcode"
+        />
       </div>
     </>
   );

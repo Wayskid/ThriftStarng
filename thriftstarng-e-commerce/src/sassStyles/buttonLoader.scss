@@ -3,7 +3,6 @@
 $animation-duration: 1.8s;
 
 .loader {
-  align-self: center;
   width: 30px;
   height: 3px;
   background: $purple;
@@ -38,13 +37,13 @@ $animation-duration: 1.8s;
 
 @keyframes load {
   0% {
-    transform: translateX(20px);
+    transform: translateX(10px);
   }
 
   50% {
-    transform: translateX(-20px);
+    transform: translateX(-10px);
   }
   100% {
-    transform: translateX(20px);
+    transform: translateX(10px);
   }
 }

@@ -11,7 +11,7 @@ import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import axios from "axios";
 import moment from "moment";
 import { INITIAL_STATE } from "../reducers/InitialState";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AppContext = createContext<UseAppContextType>({} as UseAppContextType);
 
@@ -25,13 +25,13 @@ export function AppProvider({
     billingDetails,
     cartList,
     cartAmounts,
+    token,
     userInfo,
     wishList,
-    signInInputs,
-    signUpInputs,
     pageTitle,
     openClose,
   } = state;
+  const navigate = useNavigate();
 
   // Active Link
   const location = useLocation();
@@ -42,63 +42,10 @@ export function AppProvider({
     return false;
   }
 
-  //Get Products
-  async function getProducts() {
-    try {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: true,
-      });
-      const { data } = await axios.get(
-        "https://thriftstarng.onrender.com/api/products"
-      );
-      dispatch({
-        type: REDUCER_ACTION_TYPES.GET_PRODUCTS_LIST,
-        payload: data,
-      });
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: false,
-      });
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  }
-
-  //Get single product
-  async function getSingleProduct(id: String | undefined) {
-    try {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: true,
-      });
-      const { data } = await axios.get(
-        `https://thriftstarng.onrender.com/api/products/${id}`
-      );
-      dispatch({
-        type: REDUCER_ACTION_TYPES.GET_SINGLE_PRODUCT,
-        payload: data,
-      });
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: false,
-      });
-    } catch (error: any) {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.ERROR_MSG,
-        payload: "Sorry, Product not found",
-      });
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: false,
-      });
-    }
-  }
-
   //Add to Cart
   async function addToCart(qty: Number, id: String) {
     const { data } = await axios.get(
-      `https://thriftstarng.onrender.com/api/products/${id}`
+      `http://localhost:3000/api/products/${id}`
     );
 
     if (cartList.find((item) => item.product === id)) {
@@ -137,7 +84,7 @@ export function AppProvider({
   //Add to Wishlist
   async function addToWish(qty: Number, id: String) {
     const { data } = await axios.get(
-      `https://thriftstarng.onrender.com/api/products/${id}`
+      `http://localhost:3000/api/products/${id}`
     );
 
     if (wishList.find((item) => item.product === id)) {
@@ -175,75 +122,6 @@ export function AppProvider({
     }
   }
 
-  //SingUp
-  async function signUp(e: FormEvent) {
-    e.preventDefault();
-
-    try {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: true,
-      });
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const { data } = await axios.post(
-        "https://thriftstarng.onrender.com/api/users/signUp",
-        {
-          name: signUpInputs.name,
-          email: signUpInputs.email,
-          password: signUpInputs.password,
-        },
-        config
-      );
-
-      dispatch({ type: REDUCER_ACTION_TYPES.GET_USER_INFO, payload: data });
-      dispatch({ type: REDUCER_ACTION_TYPES.LOADING, payload: false });
-    } catch (error: any) {
-      console.log(error.message);
-      dispatch({ type: REDUCER_ACTION_TYPES.LOADING, payload: false });
-    }
-  }
-
-  //SignIn
-  async function signIn(e: FormEvent) {
-    e.preventDefault();
-
-    try {
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: true,
-      });
-
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const { data } = await axios.post(
-        "https://thriftstarng.onrender.com/api/users/signIn",
-        {
-          email: signInInputs.email,
-          password: signInInputs.password,
-        },
-        config
-      );
-
-      dispatch({ type: REDUCER_ACTION_TYPES.GET_USER_INFO, payload: data });
-      dispatch({
-        type: REDUCER_ACTION_TYPES.LOADING,
-        payload: false,
-      });
-    } catch (error: any) {
-      console.log(error.message);
-      dispatch({ type: REDUCER_ACTION_TYPES.LOADING, payload: false });
-    }
-  }
-
   //Get user profile
   async function getProfile() {
     try {
@@ -254,16 +132,15 @@ export function AppProvider({
 
       const config = {
         headers: {
-          Authorization: `Bearer ${state.userInfo.token}`,
+          Authorization: `Bearer ${state.token}`,
         },
       };
 
       const { data } = await axios.get(
-        `https://thriftstarng.onrender.com/api/users/${state.userInfo._id}`,
+        `http://localhost:3000/api/users/${state.userInfo._id}`,
         config
       );
 
-      console.log(data);
       dispatch({ type: REDUCER_ACTION_TYPES.GET_USER_INFO, payload: data });
       dispatch({
         type: REDUCER_ACTION_TYPES.LOADING,
@@ -278,9 +155,10 @@ export function AppProvider({
   //SignOut
   async function signOut() {
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
 
-    dispatch({ type: REDUCER_ACTION_TYPES.GET_USER_INFO, payload: null });
-
+    dispatch({ type: REDUCER_ACTION_TYPES.GET_USER_INFO, payload: {} });
+    dispatch({ type: REDUCER_ACTION_TYPES.GET_TOKEN, payload: "" });
     dispatch({ type: REDUCER_ACTION_TYPES.CLEAR_PASSWORD_INPUT });
   }
 
@@ -319,19 +197,19 @@ export function AppProvider({
       };
 
       const { data } = await axios.post(
-        "https://thriftstarng.onrender.com/api/orders",
+        "http://localhost:3000/api/orders",
         {
           orderItems: cartList,
           userInfo: {
-            name: billingDetails.firstName + " " + billingDetails.lastName,
+            name: billingDetails.fullName,
             email: billingDetails.email,
             phone: billingDetails.phone,
           },
           userId: userInfo._id,
           shippingDetails: {
             name: billingDetails.gift
-              ? billingDetails.giftFirstName + " " + billingDetails.giftLastName
-              : billingDetails.firstName + " " + billingDetails.lastName,
+              ? billingDetails.giftFullName
+              : billingDetails.fullName,
             address: billingDetails.gift
               ? billingDetails.giftAddress
               : billingDetails.address,
@@ -358,7 +236,8 @@ export function AppProvider({
         },
         config
       );
-      console.log(data);
+
+      navigate(`/orders/${data._id}`);
 
       dispatch({
         type: REDUCER_ACTION_TYPES.OPEN_CLOSE_PAYMENT,
@@ -385,45 +264,11 @@ export function AppProvider({
     }
   }
 
-  //Handle Search
-  async function handleSearch(searchVal: String) {
-    dispatch({
-      type: REDUCER_ACTION_TYPES.SEARCH_KEYWORD,
-      payload: searchVal,
-    });
-
-    if (searchVal.length > 2) {
-      try {
-        dispatch({
-          type: REDUCER_ACTION_TYPES.LOADING,
-          payload: true,
-        });
-        const { data } = await axios.get(
-          `https://thriftstarng.onrender.com/api/products?s=${searchVal}`
-        );
-
-        dispatch({
-          type: REDUCER_ACTION_TYPES.LOADING,
-          payload: false,
-        });
-        dispatch({ type: REDUCER_ACTION_TYPES.SEARCH_RESULT, payload: data });
-      } catch (error) {
-        dispatch({
-          type: REDUCER_ACTION_TYPES.LOADING,
-          payload: false,
-        });
-        console.log(error instanceof Error);
-      }
-    } else {
-      dispatch({ type: REDUCER_ACTION_TYPES.SEARCH_RESULT, payload: [] });
-    }
-  }
-
   //Handle Filter
   async function handleFilter() {
     try {
       const { data } = await axios.get(
-        `https://thriftstarng.onrender.com/api/products?c=${
+        `http://localhost:3000/api/products?c=${
           state.productFilterSort.category === "All"
             ? ""
             : state.productFilterSort.category
@@ -454,16 +299,17 @@ export function AppProvider({
     //Add user info to Local Storage
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
+    //Add token to Local Storage
+    localStorage.setItem("token", JSON.stringify(token));
+
     //Add billing Details info to Local Storage
     localStorage.setItem("billingDetails", JSON.stringify(billingDetails));
 
     //Calculate cart total
     let total = 0;
-
     state.cartList.forEach((item) => {
       total += item.qty * item.price;
     });
-
     dispatch({
       type: REDUCER_ACTION_TYPES.CALC_TOTAL,
       payload: total,
@@ -496,17 +342,12 @@ export function AppProvider({
         state,
         dispatch,
         pathMatch,
-        getProducts,
-        getSingleProduct,
         addToCart,
         addToWish,
-        signUp,
-        signIn,
         getProfile,
         signOut,
         handleBillingDetails,
         handleOrder,
-        handleSearch,
         handleFilter,
       }}
     >

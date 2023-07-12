@@ -5,7 +5,6 @@
   display: grid;
   width: min(55rem, 100%);
   justify-self: center;
-  min-height: 100vh;
   gap: 1rem;
   
   @include desktop {

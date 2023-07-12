@@ -5,13 +5,14 @@ import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import { useParams } from "react-router-dom";
 import { INITIAL_STATE } from "../reducers/InitialState";
 import Loader from "../components/Loader";
-import { ComboBox, Item } from "@adobe/react-spectrum";
+// import { ComboBox, Item } from "@adobe/react-spectrum";
+import axios from "axios";
 
 export default function ViewItem() {
-  const { state, dispatch, getSingleProduct, addToCart, addToWish } =
+  const { state, dispatch, addToCart, addToWish } =
     useContext(AppContext);
 
-  const productId = useParams();
+  const { productId } = useParams();
 
   useEffect(() => {
     dispatch({
@@ -24,8 +25,38 @@ export default function ViewItem() {
       payload: INITIAL_STATE.qtySelected,
     });
 
-    getSingleProduct(productId.id);
-  }, [state.pageTitle, dispatch, productId.id]);
+    //Get single product
+    async function getSingleProduct(id: String | undefined) {
+      try {
+        dispatch({
+          type: REDUCER_ACTION_TYPES.LOADING,
+          payload: true,
+        });
+        const { data } = await axios.get(
+          `http://localhost:3000/api/products/${id}`
+        );
+        dispatch({
+          type: REDUCER_ACTION_TYPES.GET_SINGLE_PRODUCT,
+          payload: data,
+        });
+        dispatch({
+          type: REDUCER_ACTION_TYPES.LOADING,
+          payload: false,
+        });
+      } catch (error: any) {
+        dispatch({
+          type: REDUCER_ACTION_TYPES.ERROR_MSG,
+          payload: "Sorry, Product not found",
+        });
+        dispatch({
+          type: REDUCER_ACTION_TYPES.LOADING,
+          payload: false,
+        });
+      }
+    }
+
+    getSingleProduct(productId);
+  }, [state.pageTitle, dispatch, productId]);
 
   return (
     <div className="viewItem">
@@ -57,27 +88,6 @@ export default function ViewItem() {
                     {state.singleProduct.stockCount > 0 ? "Available" : "Sold"}
                   </h4>
                 </li>
-                {state.singleProduct.stockCount > 0 && (
-                  <li className="detail">
-                    <p className="quantityTitle">Quantity</p>
-                    <ComboBox
-                      selectedKey={state.qtySelected}
-                      onSelectionChange={(key) => {
-                        dispatch({
-                          type: REDUCER_ACTION_TYPES.QTY_SELECTED,
-                          payload: key,
-                        });
-                      }}
-                      name="qtySelected"
-                    >
-                      {[...Array(state.singleProduct.stockCount).keys()].map(
-                        (x): JSX.Element => {
-                          return <Item key={x + 1}>{x + 1}</Item>;
-                        }
-                      )}
-                    </ComboBox>
-                  </li>
-                )}
               </ul>
               <button
                 onClick={() =>
