@@ -1,32 +1,32 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import Nav from "./layouts/Nav";
-import Home from "./pages/Home";
-import NewArrivals from "./pages/NewArrivals";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import Cart from "./pages/Cart";
-import Contact from "./pages/Contact";
-import Sales from "./pages/Sales";
+import Home from "./pages/Home/Home";
+import NewArrivals from "./pages/NewArrivals/NewArrivals";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
+import Cart from "./pages/Cart/Cart";
+import Contact from "./pages/Contact/Contact";
+import Sales from "./pages/Sales/Sales";
 import Footer from "./layouts/Footer";
-import About from "./pages/About";
-import Wish from "./pages/Wish";
+import About from "./pages/About/About";
+import Wish from "./pages/Wish/Wish";
 import Search from "./layouts/Search";
-import ViewItem from "./pages/ViewItem";
+import ItemInfo from "./pages/ItemInfo/ItemInfo";
 import NotFound from "./pages/NotFound";
-import Checkout from "./pages/Checkout";
+import Checkout from "./pages/Checkout/Checkout";
 // import ScrollToTop from "./pages/ScrollToTop";
 import AppContext from "./contexts/AppContext";
 import Filter from "./layouts/Filter";
 import CartMenu from "./layouts/CartMenu";
 import MobileMenu from "./layouts/MobileMenu";
 import Alerts from "./layouts/Alerts";
-import Account from "./pages/Account";
-import Billing from "./pages/Billing";
-import OrderHistory from "./pages/OrderHistory";
-import PersonalInfo from "./pages/PersonalInfo";
-import Settings from "./pages/Settings";
-import OrderInfo from "./pages/OrderInfo";
+import Account from "./pages/Account/Account";
+import Billing from "./pages/Account/Billing";
+import OrderInfo from "./pages/OrderInfo/OrderInfo";
+import OrderHistory from "./pages/Account/OrderHistory";
+import PersonalInfo from "./pages/Account/PersonalInfo";
+import Settings from "./pages/Account/Settings";
 
 function App() {
   const { state } = useContext(AppContext);
@@ -51,7 +51,7 @@ function App() {
         <Route path="sales" element={<Sales />}></Route>
         <Route path="wish" element={<Wish />}></Route>
         <Route path="about" element={<About />}></Route>
-        <Route path="products/:productId" element={<ViewItem />}></Route>
+        <Route path="products/:productId" element={<ItemInfo />}></Route>
         <Route
           path="checkout"
           element={

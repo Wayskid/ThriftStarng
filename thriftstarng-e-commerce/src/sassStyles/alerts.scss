@@ -1,40 +1,41 @@
 @import "./variables";
 
-.alerts{
-    position: fixed;
-    top: 0.5rem;
-    justify-self: center;
-    z-index: 7;
-    background-color: white;
-    padding-block: 0.7rem;
-    padding-inline: 1rem 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 3px;
-    overflow: hidden;
-    align-items: center;
-    width: min(20rem, 60%);
+.alerts {
+  position: fixed;
+  translate: -50% 0;
+  left: 50%;
+  top: 0.5rem;
+  z-index: 7;
+  background-color: white;
+  padding-block: 0.7rem;
+  padding-inline: 1rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 3px;
+  overflow: hidden;
+  align-items: center;
+  width: min(20rem, 60%);
 
-    &::before{
-        content: "";
-        height: 100%;
-        width: 0.3rem;
-        background-color: #088b3f;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+  &::before {
+    content: "";
+    height: 100%;
+    width: 0.3rem;
+    background-color: #088b3f;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
-    p{
-        font-size: 14px;
-        font-family: Cambria;
-    }
-    
-    .closeAlertBtn{
-        background: none;
-        border: none;
-        font-size: 10px;
-        display: grid;
-        font-size: 14px;
-    }
+  p {
+    font-size: 14px;
+    font-family: Cambria;
+  }
+
+  .closeAlertBtn {
+    background: none;
+    border: none;
+    font-size: 10px;
+    display: grid;
+    font-size: 14px;
+  }
 }

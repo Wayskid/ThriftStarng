@@ -20,14 +20,14 @@
     font-size: 40px;
   }
 
-  &Right{
+  &Right {
     display: grid;
     gap: 2rem;
-    
-    @include tablet{
-        display: flex;
-        justify-content: space-between;
-        width: 90%;
+
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
     }
   }
 
@@ -35,18 +35,18 @@
     display: grid;
     gap: 1rem;
     justify-items: center;
-    
-    @include tablet{
-        justify-items: left;
+
+    @include tablet {
+      justify-items: left;
     }
-    
+
     .social {
-        display: flex;
-        gap: 0.8rem;
-        align-items: center;
-        font-size: 14px;
-        
-        & > :first-child {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      font-size: 14px;
+
+      & > :first-child {
         font-size: 25px;
       }
     }
@@ -59,8 +59,8 @@
     align-self: center;
     text-align: center;
 
-    @include tablet{
-        text-align: left;
+    @include tablet {
+      text-align: left;
     }
   }
 

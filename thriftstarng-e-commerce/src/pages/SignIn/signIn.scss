@@ -1,0 +1,37 @@
+@import "../../sassStyles/variables";
+
+.signIn {
+  display: grid;
+  gap: 3rem;
+  align-content: center;
+  padding: 8rem 1rem 5rem;
+
+  .header {
+    text-align: center;
+
+    h1 {
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  &Body {
+    display: grid;
+    gap: 2%;
+    width: min(25rem, 100%);
+    justify-self: center;
+
+    .signInForm {
+      box-shadow: 0px 2px 5px -2px grey;
+      display: grid;
+      gap: 1rem;
+      padding: 2rem;
+
+      .elseSignUp {
+        text-align: center;
+        a {
+          color: $primary;
+        }
+      }
+    }
+  }
+}

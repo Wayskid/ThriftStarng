@@ -1,0 +1,77 @@
+@import "../../sassStyles/variables";
+
+.itemInfo {
+  padding: 6rem 1rem 2rem 1rem;
+  display: grid;
+  width: min(55rem, 100%);
+  justify-self: center;
+  gap: 1rem;
+
+  @include desktop {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .itemInfoImage {
+    display: grid;
+
+    @include desktop {
+      display: grid;
+      align-items: start;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      justify-self: center;
+    }
+  }
+
+  .itemInfoDetails {
+    display: grid;
+    gap: 1rem;
+
+    .itemTitle {
+      font-size: 25px;
+    }
+
+    .tableBtn {
+      display: grid;
+      gap: 0.5rem;
+
+      .detailsTable {
+        display: grid;
+        border: 2px solid;
+
+        .detail {
+          display: flex;
+          border-bottom: 2px solid $secondary;
+          justify-content: space-between;
+          padding: 0.5rem 1rem;
+        }
+
+        & > :last-child {
+          border: none;
+        }
+      }
+
+      .itemInfoCartBtn {
+        @include buttonsStyles($primary);
+        padding-block: 0.6rem;
+      }
+
+      .itemInfoWishBtn {
+        @include buttonsStyles($secondary);
+        padding-block: 0.6rem;
+      }
+    }
+  }
+
+  .errMsg {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+}

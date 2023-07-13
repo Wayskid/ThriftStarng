@@ -1,0 +1,16 @@
+@import "../../sassStyles/variables";
+
+.about{
+    padding: 4rem 1rem;
+
+    &Header{
+        font-size: 50px;
+        text-align: center;
+    }
+
+    &WriteUp{
+        width: min(50rem, 100%);
+        margin-inline: auto;
+        margin-top: 3rem;
+    }
+}
