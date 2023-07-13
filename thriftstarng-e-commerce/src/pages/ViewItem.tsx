@@ -9,8 +9,7 @@ import Loader from "../components/Loader";
 import axios from "axios";
 
 export default function ViewItem() {
-  const { state, dispatch, addToCart, addToWish } =
-    useContext(AppContext);
+  const { state, dispatch, addToCart, addToWish } = useContext(AppContext);
 
   const { productId } = useParams();
 
@@ -33,7 +32,7 @@ export default function ViewItem() {
           payload: true,
         });
         const { data } = await axios.get(
-          `http://localhost:3000/api/products/${id}`
+          `https://thriftstarng.onrender.com/api/products/${id}`
         );
         dispatch({
           type: REDUCER_ACTION_TYPES.GET_SINGLE_PRODUCT,

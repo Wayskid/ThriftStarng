@@ -32,7 +32,7 @@ export default function Settings() {
           },
         };
         const { data } = await axios.patch(
-          `http://localhost:3000/api/users/${state.userInfo._id}/settings/personalInfo`,
+          `https://thriftstarng.onrender.com/api/users/${state.userInfo._id}/settings/personalInfo`,
           { ...editedValue },
           config
         );
@@ -63,7 +63,7 @@ export default function Settings() {
         },
       };
       const { data } = await axios.patch(
-        `http://localhost:3000/api/users/${state.userInfo._id}/settings/password`,
+        `https://thriftstarng.onrender.com/api/users/${state.userInfo._id}/settings/password`,
         { currentPass: editPassVal.currentPass, newPass: editPassVal.newPass },
         config
       );

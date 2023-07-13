@@ -64,7 +64,7 @@ export default function Billing() {
           },
         };
         const { data } = await axios.patch(
-          `http://localhost:3000/api/users/${state.userInfo._id}/settings/billingDetails`,
+          `https://thriftstarng.onrender.com/api/users/${state.userInfo._id}/settings/billingDetails`,
           { ...editedValue },
           config
         );

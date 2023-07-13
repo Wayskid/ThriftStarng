@@ -54,7 +54,7 @@ export default function Search() {
         setLoading(true);
 
         const { data } = await axios.get(
-          `http://localhost:3000/api/products/q/search?keyword=${e.target.value.trim()}`
+          `https://thriftstarng.onrender.com/api/products/q/search?keyword=${e.target.value.trim()}`
         );
 
         setLoading(false);

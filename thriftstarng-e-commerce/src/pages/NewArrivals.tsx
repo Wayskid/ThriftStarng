@@ -26,7 +26,7 @@ export default function NewArrivals() {
         setLoading(true);
 
         const { data } = await axios.get(
-          "http://localhost:3000/api/products/new"
+          "https://thriftstarng.onrender.com/api/products/new"
         );
 
         setLoading(false);

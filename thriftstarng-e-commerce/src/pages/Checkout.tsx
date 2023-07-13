@@ -31,6 +31,7 @@ export default function Checkout() {
     }
   }, [window.innerWidth]);
 
+
   function matchRoute(route: string): boolean {
     if (route === location.pathname) {
       return true;
@@ -83,7 +84,7 @@ export default function Checkout() {
             {state.openClose.isBillingDetailsOpen ? (
               <BillingDetails />
             ) : (
-              !state.openClose.isOrderCompleteOpen && <ShippingInfo/>
+              !state.openClose.isOrderCompleteOpen && <ShippingInfo />
             )}
           </div>
         </div>

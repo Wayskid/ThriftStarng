@@ -14,9 +14,7 @@ import { ProductType } from "../Types";
 export default function Home() {
   const navigate = useNavigate();
   const { state, dispatch } = useContext(AppContext);
-  const [result, setResult] = useState<ProductType[]>(
-    [] as ProductType[]
-  );
+  const [result, setResult] = useState<ProductType[]>([] as ProductType[]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,8 +27,10 @@ export default function Home() {
     async function getProducts() {
       try {
         setLoading(true);
-        const { data } = await axios.get("http://localhost:3000/api/products");
-        
+        const { data } = await axios.get(
+          "https://thriftstarng.onrender.com/api/products"
+        );
+
         setResult(data);
         setLoading(false);
       } catch (error: any) {
@@ -38,7 +38,7 @@ export default function Home() {
       }
     }
 
-    getProducts()
+    getProducts();
   }, [state.pageTitle]);
 
   return (

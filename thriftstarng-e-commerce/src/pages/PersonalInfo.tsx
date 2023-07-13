@@ -42,7 +42,7 @@ export default function PersonalInfo() {
           },
         };
         const { data } = await axios.patch(
-          `http://localhost:3000/api/users/${state.userInfo._id}/settings/personalInfo`,
+          `https://thriftstarng.onrender.com/api/users/${state.userInfo._id}/settings/personalInfo`,
           { ...editedValue },
           config
         );

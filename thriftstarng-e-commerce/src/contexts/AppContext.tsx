@@ -45,7 +45,7 @@ export function AppProvider({
   //Add to Cart
   async function addToCart(qty: Number, id: String) {
     const { data } = await axios.get(
-      `http://localhost:3000/api/products/${id}`
+      `https://thriftstarng.onrender.com/api/products/${id}`
     );
 
     if (cartList.find((item) => item.product === id)) {
@@ -84,7 +84,7 @@ export function AppProvider({
   //Add to Wishlist
   async function addToWish(qty: Number, id: String) {
     const { data } = await axios.get(
-      `http://localhost:3000/api/products/${id}`
+      `https://thriftstarng.onrender.com/api/products/${id}`
     );
 
     if (wishList.find((item) => item.product === id)) {
@@ -137,7 +137,7 @@ export function AppProvider({
       };
 
       const { data } = await axios.get(
-        `http://localhost:3000/api/users/${state.userInfo._id}`,
+        `https://thriftstarng.onrender.com/api/users/${state.userInfo._id}`,
         config
       );
 
@@ -197,7 +197,7 @@ export function AppProvider({
       };
 
       const { data } = await axios.post(
-        "http://localhost:3000/api/orders",
+        "https://thriftstarng.onrender.com/api/orders",
         {
           orderItems: cartList,
           userInfo: {
@@ -255,10 +255,22 @@ export function AppProvider({
       });
 
       setTimeout(() => {
+        dispatch({
+          type: REDUCER_ACTION_TYPES.OPEN_CLOSE_BILLING_DET,
+          payload: true,
+        });
+        dispatch({
+          type: REDUCER_ACTION_TYPES.OPEN_CLOSE_ORDER_COMPLETE,
+          payload: false,
+        });
+        dispatch({
+          type: REDUCER_ACTION_TYPES.OPEN_CLOSE_PAYMENT,
+          payload: false,
+        });
         dispatch({ type: REDUCER_ACTION_TYPES.CLEAR_CART });
 
         localStorage.removeItem("cartItems");
-      }, 3000);
+      }, 5000);
     } catch (error) {
       console.log(error);
     }
@@ -268,7 +280,7 @@ export function AppProvider({
   async function handleFilter() {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/products?c=${
+        `https://thriftstarng.onrender.com/api/products?c=${
           state.productFilterSort.category === "All"
             ? ""
             : state.productFilterSort.category

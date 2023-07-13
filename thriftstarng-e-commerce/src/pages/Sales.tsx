@@ -26,9 +26,9 @@ export default function Sales() {
         setLoading(true);
 
         const { data } = await axios.get(
-          "http://localhost:3000/api/products"
+          "https://thriftstarng.onrender.com/api/products"
         );
-        
+
         setLoading(false);
         setSalesProducts(data);
       } catch (error: any) {

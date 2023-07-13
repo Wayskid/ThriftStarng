@@ -33,7 +33,7 @@ export default function SignIn() {
       };
 
       const { data } = await axios.post(
-        "http://localhost:3000/api/users/signIn",
+        "https://thriftstarng.onrender.com/api/users/signIn",
         {
           email: signInInputs.email,
           password: signInInputs.password,
