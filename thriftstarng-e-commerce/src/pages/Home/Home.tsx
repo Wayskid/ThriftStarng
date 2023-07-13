@@ -7,9 +7,9 @@ import homeImg from "../../assets/blake-connally-CG4GE2c165M-unsplash.jpg";
 import AppButton from "../../components/appButton/AppButton";
 import { BsFilterLeft } from "react-icons/bs";
 import ShopList from "../../components/ShopList";
-import SkeletonLoader from "../../components/SkeletonLoader";
 import axios from "axios";
 import { ProductType } from "../../Types";
+import ProductLoader from "../../components/skeletonLoaders/ProductLoader";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -59,7 +59,9 @@ export default function Home() {
         <div className="shopSectionTop">
           <div className="catSelected">
             <p>ThriftStarng</p>
-            <b>{state.productFilterSort.category}</b>
+            {state.productFilterSort.category && (
+              <b>| {state.productFilterSort.category}</b>
+            )}
           </div>
           <button
             onClick={() =>
@@ -74,16 +76,7 @@ export default function Home() {
             </span>
           </button>
         </div>
-        {loading ? (
-          <div className="skeletonLoaders">
-            <SkeletonLoader />
-            <SkeletonLoader />
-            <SkeletonLoader />
-            <SkeletonLoader />
-          </div>
-        ) : (
-          <ShopList products={result} />
-        )}
+        {loading ? <ProductLoader /> : <ShopList products={result} />}
       </div>
     </div>
   );

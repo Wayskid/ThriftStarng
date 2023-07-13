@@ -4,8 +4,9 @@ import AppContext from "../../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import axios from "axios";
 import { ProductType } from "../../Types";
-import Loader from "../../components/Loader";
 import ShopList from "../../components/ShopList";
+import SkeletonLoader from "../../components/skeletonLoaders/ProductLoader";
+import ProductLoader from "../../components/skeletonLoaders/ProductLoader";
 
 export default function NewArrivals() {
   const { state, dispatch } = useContext(AppContext);
@@ -47,7 +48,7 @@ export default function NewArrivals() {
         <h3>Shop ThriftStarng Newest Designs</h3>
       </div>
       <div className="newArrivalsShopSec">
-        {loading ? <Loader /> : <ShopList products={salesProducts} />}
+        {loading ? <ProductLoader /> : <ShopList products={salesProducts} />}
       </div>
     </div>
   );

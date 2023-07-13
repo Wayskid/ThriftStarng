@@ -1,4 +1,4 @@
-import ButtonLoader from "../ButtonLoader";
+import ButtonLoader from "./ButtonLoader";
 import "./appButton.scss";
 
 export default function AppButton({

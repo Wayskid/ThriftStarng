@@ -1,17 +1,15 @@
 @import "./variables";
 
 .shopList {
-  width: min(70rem, 85%);
+  width: min(74rem, 85%);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   justify-self: center;
-  gap: 1.5rem;
-  padding-block: 2rem;
+  gap: 2.5rem;
 }
 
 .shopListLoadMoreBtn {
   button {
     margin-inline: auto;
-    margin-bottom: 1rem;
   }
 }

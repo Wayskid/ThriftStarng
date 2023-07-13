@@ -6,12 +6,13 @@ import { OrderInfoTypes } from "../../Types";
 import Loader from "../../components/Loader";
 import AppButton from "../../components/appButton/AppButton";
 import AppContext from "../../contexts/AppContext";
+import AccountLoader from "../../components/skeletonLoaders/AccountLoader";
 
 export default function OrderHistory() {
   const [orderHistory, setOrderHistory] = useState<OrderInfoTypes[]>([]);
   const { state } = useContext(AppContext);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   //Get user orders
   async function getUserOrders() {
@@ -47,7 +48,7 @@ export default function OrderHistory() {
         <p className="outletHeader">Order history</p>
       </div>
       <ul className="infoList">
-        {!loading ? (
+        {loading ? (
           orderHistory &&
           orderHistory.map((order) => (
             <div className="info orderHistInfo" key={order._id}>
@@ -75,7 +76,7 @@ export default function OrderHistory() {
             </div>
           ))
         ) : (
-          <Loader />
+          <AccountLoader />
         )}
         {!loading && !orderHistory && (
           <p className="noOrderYet">

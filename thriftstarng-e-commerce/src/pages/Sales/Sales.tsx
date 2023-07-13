@@ -5,7 +5,8 @@ import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import axios from "axios";
 import { ProductType } from "../../Types";
 import ShopList from "../../components/ShopList";
-import Loader from "../../components/Loader";
+import SkeletonLoader from "../../components/skeletonLoaders/ProductLoader";
+import ProductLoader from "../../components/skeletonLoaders/ProductLoader";
 
 export default function Sales() {
   const { state, dispatch } = useContext(AppContext);
@@ -47,7 +48,7 @@ export default function Sales() {
         <h3>Get 30%-50% off Designs</h3>
       </div>
       <div className="salesShopSec">
-        {loading ? <Loader /> : <ShopList products={salesProducts} />}
+        {loading ? <ProductLoader /> : <ShopList products={salesProducts} />}
       </div>
     </div>
   );

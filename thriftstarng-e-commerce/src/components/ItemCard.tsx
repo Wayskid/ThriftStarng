@@ -18,7 +18,10 @@ export default function ItemCard({ product }: { product: ProductType }) {
       className="itemCard"
     >
       <div className="itemCardTop">
-        <div onClick={() => navigate(`/products/${product._id}`)}>
+        <div
+          onClick={() => navigate(`/products/${product._id}`)}
+          className="imgWrapper"
+        >
           <img src={product.image} alt="gown one" />
         </div>
         <div className="itemCardDetailsWrap">
