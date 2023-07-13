@@ -78,9 +78,7 @@ export const getProfile = async (req, res) => {
         billingDetails: user.billingDetails,
         isAdmin: user.isAdmin,
       });
-    } else {
-      throw new Error("User not found");
-    }
+    } else throw new Error("User not found");
   } catch (error) {
     res.status(400).json(error.message);
   }

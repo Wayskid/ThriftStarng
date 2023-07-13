@@ -44,6 +44,9 @@ export const getOrderInfo = async (req, res) => {
     const { orderId } = req.params;
 
     const order = await Order.findById(orderId);
+
+    if (!order) throw new Error("Sorry, we cannot find this Order");
+
     res.status(200).json(order);
   } catch (error) {
     res.status(400).json(error.message);
@@ -56,6 +59,8 @@ export const getUserOrders = async (req, res) => {
     const { userId } = req.params;
 
     const orders = await Order.find({ userId }).sort({ createdAt: 1 });
+
+    if (!orders) throw new Error("Something went wrong");
     res.status(200).json(orders);
   } catch (error) {
     res.status(400).json(error.message);

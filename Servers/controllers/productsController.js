@@ -4,13 +4,15 @@ import Products from "../models/productModel.js";
 export const getAllProducts = async (req, res) => {
   try {
     const products = await Products.find({});
+
+    if (!products) throw new Error("Something went wrong");
     res.status(200).json(products);
   } catch (error) {
     res.status(400).json(error.message);
   }
 };
 
-// Get new arrives
+// Get new arrivals
 export const getNewProducts = async (req, res) => {
   try {
     const products = await Products.find({}).sort({
@@ -37,6 +39,7 @@ export const getOneProduct = async (req, res) => {
   try {
     const { productId } = req.params;
     const product = await Products.findById(productId);
+    
     if (!product) throw new Error("Sorry, we cannot find this product");
     res.status(200).json(product);
   } catch (error) {

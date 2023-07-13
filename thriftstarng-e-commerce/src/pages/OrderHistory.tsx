@@ -47,7 +47,8 @@ export default function OrderHistory() {
         <p className="outletHeader">Order history</p>
       </div>
       <ul className="infoList">
-        {orderHistory?.length ? (
+        {!loading ? (
+          orderHistory &&
           orderHistory.map((order) => (
             <div className="info orderHistInfo" key={order._id}>
               <div className="infoFlex">
@@ -76,7 +77,7 @@ export default function OrderHistory() {
         ) : (
           <Loader />
         )}
-        {orderHistory?.length === 0 && !loading && (
+        {!loading && !orderHistory && (
           <p className="noOrderYet">
             You don't have any order yet. <Link to="/">View products</Link>
           </p>

@@ -12,9 +12,9 @@ const orderRoute = express.Router();
 orderRoute.post("/", createOrder);
 
 // Get order details
-orderRoute.get("/:orderId", getOrderInfo);
+orderRoute.get("/info/:orderId", getOrderInfo);
 
-// Get user oders
-orderRoute.get("/:userId", protect, getUserOrders);
+// Get user orders
+orderRoute.get("/user/:userId", protect, getUserOrders);
 
 export default orderRoute;
