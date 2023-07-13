@@ -25,7 +25,7 @@ export default function OrderHistory() {
       };
 
       const { data } = await axios.get(
-        `https://thriftstarng.onrender.com/api/orders/${state.userInfo._id}`,
+        `https://thriftstarng.onrender.com/api/orders/user/${state.userInfo._id}`,
         config
       );
 

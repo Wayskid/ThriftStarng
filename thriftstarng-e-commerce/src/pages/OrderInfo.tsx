@@ -26,7 +26,7 @@ export default function OrderInfo() {
   async function getOrderInfo() {
     try {
       const { data } = await axios.get(
-        `https://thriftstarng.onrender.com/api/orders/${orderId}`
+        `https://thriftstarng.onrender.com/api/orders/user/${orderId}`
       );
 
       setOrderInfoResult(data);
