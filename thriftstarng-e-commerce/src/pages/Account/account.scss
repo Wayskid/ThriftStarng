@@ -90,11 +90,31 @@
           }
 
           img {
-            z-index: 5;
+            z-index: 4;
             width: 10rem;
             height: 10rem;
             border-radius: 50%;
             object-fit: cover;
+          }
+
+          .accountImgLabel {
+            position: absolute;
+            margin: auto;
+            z-index: 4;
+            .imgEditIcon {
+              color: $primary;
+              font-size: 48px;
+              display: none;
+              cursor: pointer;
+            }
+          }
+
+          .accountImgInput {
+            display: none;
+          }
+
+          &:hover .imgEditIcon {
+            display: grid;
           }
         }
       }
@@ -138,6 +158,48 @@
       .activeAccountNav {
         color: white;
         background-color: $primary;
+      }
+    }
+  }
+
+  .imgPreviewDialog {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(128, 128, 128, 0.415);
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    z-index: 6;
+    
+    .imgPreview {
+      position: relative;
+      width: min(fit-content, 100%);
+      height: fit-content;
+      padding: 3rem;
+      display: grid;
+      place-content: center;
+      background-color: white;
+      border-radius: 10px;
+
+      img {
+        justify-self: center;
+        width: 20rem;
+        height: 20rem;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+      }
+
+      .imgPreviewDialogIcon{
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 35px;
+        color: $primary;
+        cursor: pointer;
       }
     }
   }

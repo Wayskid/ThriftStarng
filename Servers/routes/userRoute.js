@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  changeProfilePic,
   changePassword,
   editBillingDetails,
   editPersonalInfo,
@@ -28,5 +29,8 @@ usersRoute.patch("/:userId/settings/billingDetails", protect, editBillingDetails
 
 // Change password
 usersRoute.patch("/:userId/settings/password", protect, changePassword);
+
+// Change profile pic
+usersRoute.patch("/:userId/settings/profilePic", protect, changeProfilePic);
 
 export default usersRoute;

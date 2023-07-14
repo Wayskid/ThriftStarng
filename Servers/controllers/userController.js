@@ -191,3 +191,26 @@ export const changePassword = async (req, res) => {
     res.status(400).json(error.message);
   }
 };
+
+// Change profile pic
+export const changeProfilePic = async (req, res) => {
+  try {
+    const { newImg } = req.body;
+    const { userId } = req.params;
+    const user = await User.findById(userId);
+
+    user.personalInfo.profilePic = newImg;
+    const savedUser = await user.save();
+
+    res.status(200).json({
+      _id: savedUser._id,
+      name: savedUser.name,
+      email: savedUser.email,
+      personalInfo: savedUser.personalInfo,
+      billingDetails: user.billingDetails,
+      isAdmin: savedUser.isAdmin,
+    });
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
