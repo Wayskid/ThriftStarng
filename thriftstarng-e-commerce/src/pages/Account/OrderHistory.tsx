@@ -3,7 +3,6 @@ import axios from "axios";
 import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 import { OrderInfoTypes } from "../../Types";
-import Loader from "../../components/Loader";
 import AppButton from "../../components/appButton/AppButton";
 import AppContext from "../../contexts/AppContext";
 import AccountLoader from "../../components/skeletonLoaders/AccountLoader";

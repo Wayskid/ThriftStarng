@@ -2,13 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import "./account.scss";
 import { Link, Outlet } from "react-router-dom";
 import { AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
-import { BiDetail, BiEdit, BiWindowClose, BiX } from "react-icons/bi";
+import { BiDetail, BiEdit, BiX } from "react-icons/bi";
 import { BsReceiptCutoff } from "react-icons/bs";
 import AppContext from "../../contexts/AppContext";
 import AppButton from "../../components/appButton/AppButton";
 import axios from "axios";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
-import Loader from "../../components/Loader";
 
 export default function Account() {
   const { state, dispatch, pathMatch } = useContext(AppContext);

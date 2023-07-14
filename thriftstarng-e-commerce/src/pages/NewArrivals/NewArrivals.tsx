@@ -5,7 +5,6 @@ import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import axios from "axios";
 import { ProductType } from "../../Types";
 import ShopList from "../../components/ShopList";
-import SkeletonLoader from "../../components/skeletonLoaders/ProductLoader";
 import ProductLoader from "../../components/skeletonLoaders/ProductLoader";
 
 export default function NewArrivals() {
