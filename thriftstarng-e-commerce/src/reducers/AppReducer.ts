@@ -23,6 +23,16 @@ export function AppReducer(state: INITIAL_STATE_TYPES, action: ActionTypes) {
         ...state,
         cartList: [...state.cartList, action.payload],
       };
+    case REDUCER_ACTION_TYPES.UPDATE_CART:
+      return {
+        ...state,
+        cartList: state.cartList.map((item) => {
+          if (item.product === action.payload.key) {
+            return { ...item, qty: +action.payload.value };
+          }
+          return item;
+        }),
+      };
     case REDUCER_ACTION_TYPES.DELETE_FROM_CART:
       return {
         ...state,

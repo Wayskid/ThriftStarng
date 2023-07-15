@@ -4,7 +4,7 @@ import { ActionTypes } from "./reducers/ReducerActionsTypes";
 export interface ProductType {
   _id: string;
   color: String;
-  description: String;
+  description: string;
   image: string;
   name: String;
   price: number;

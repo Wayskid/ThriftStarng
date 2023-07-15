@@ -23,6 +23,10 @@ export default function ItemInfoLoader() {
               <Skeleton inline={true} width="28%" />
               <Skeleton inline={true} width="15%" />
             </div>
+            <div className="skelFlex">
+              <Skeleton inline={true} width="28%" />
+              <Skeleton inline={true} width="15%" />
+            </div>
           </div>
           <Skeleton height="2rem" />
           <Skeleton height="2rem" />

@@ -15,6 +15,7 @@ import Loader from "../../components/Loader";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import axios from "axios";
 import AppButton from "../../components/appButton/AppButton";
+import { motion } from "framer-motion";
 
 export default function Billing() {
   const { state, dispatch } = useContext(AppContext);
@@ -78,7 +79,9 @@ export default function Billing() {
   }
 
   return (
-    <div className="accountOutlet">
+    <motion.div
+      initial={{ translateX: 20 }}
+      animate={{ translateX: 0 }} className="accountOutlet">
       <div className="headerEdit">
         <p className="outletHeader">Billing Details</p>
         {loading ? (
@@ -257,6 +260,6 @@ export default function Billing() {
           )}
         </div>
       </ul>
-    </div>
+    </motion.div>
   );
 }

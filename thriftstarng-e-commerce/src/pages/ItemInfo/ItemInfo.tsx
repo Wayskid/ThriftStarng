@@ -4,28 +4,29 @@ import AppContext from "../../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import { useParams } from "react-router-dom";
 import { INITIAL_STATE } from "../../reducers/InitialState";
-// import { ComboBox, Item } from "@adobe/react-spectrum";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import AppButton from "../../components/appButton/AppButton";
 import { ProductType } from "../../Types";
 import ItemInfoLoader from "../../components/skeletonLoaders/ItemInfoLoader";
+import AppInputSelect from "../../components/appInput/AppInputSelect";
 
 export default function ItemInfo() {
   const { state, dispatch, addToCart, addToWish } = useContext(AppContext);
+  const [itemQty, setItemQty] = useState(0);
   const [itemInfo, setItemInfo] = useState<ProductType>({} as ProductType);
   const [loading, setLoading] = useState(true);
+  const [errMsg, setErrMsg] = useState("");
 
   const { productId } = useParams();
+
+  useEffect(() => {
+    loading && setErrMsg("");
+  }, [loading]);
 
   useEffect(() => {
     dispatch({
       type: REDUCER_ACTION_TYPES.PAGE_TITLE,
       payload: "View Item - ThriftStarng",
-    });
-
-    dispatch({
-      type: REDUCER_ACTION_TYPES.QTY_SELECTED,
-      payload: INITIAL_STATE.qtySelected,
     });
 
     //Get single product
@@ -38,7 +39,9 @@ export default function ItemInfo() {
         setItemInfo(data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        if (error instanceof AxiosError) {
+          setErrMsg(error?.response?.data);
+        }
         setLoading(false);
       }
     }
@@ -48,7 +51,11 @@ export default function ItemInfo() {
 
   return (
     <div className="itemInfo">
-      {loading ? (
+      {errMsg ? (
+        <p style={{ color: "grey", marginInline: "auto", fontSize: 40, marginTop: 80 }}>
+          {errMsg}
+        </p>
+      ) : loading ? (
         <ItemInfoLoader />
       ) : (
         <>
@@ -69,6 +76,16 @@ export default function ItemInfo() {
                   <h4 className="priceVal">#{itemInfo.price}</h4>
                 </li>
                 <li className="detail">
+                  <p className="priceTitle">Quantity</p>
+                  <AppInputSelect
+                    version="stock"
+                    list={[...Array(itemInfo.stockCount).keys()]}
+                    value={itemQty.toString()}
+                    name="qty"
+                    onChange={(e) => setItemQty(Number(e.target.value))}
+                  />
+                </li>
+                <li className="detail">
                   <p className="statusTitle">Status</p>
                   <h4 className="statusVal">
                     {itemInfo.stockCount > 0 ? "Available" : "Sold"}
@@ -78,12 +95,12 @@ export default function ItemInfo() {
               <AppButton
                 version="primaryBtn"
                 label="Add To Cart"
-                onClick={() => addToCart(state.qtySelected, itemInfo._id)}
+                onClick={() => addToCart(itemQty, itemInfo._id)}
               />
               <AppButton
                 version="secondaryBtn"
                 label="Add To Wishlist"
-                onClick={() => addToWish(state.qtySelected, itemInfo._id)}
+                onClick={() => addToWish(itemQty, itemInfo._id)}
               />
             </div>
           </div>

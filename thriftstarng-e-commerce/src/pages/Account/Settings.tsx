@@ -7,6 +7,7 @@ import AppButton from "../../components/appButton/AppButton";
 import AppInput from "../../components/appInput/AppInput";
 import AppContext from "../../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
+import { motion } from "framer-motion";
 
 export default function Settings() {
   const { state, dispatch } = useContext(AppContext);
@@ -82,7 +83,9 @@ export default function Settings() {
   }
 
   return (
-    <div className="accountOutlet">
+    <motion.div
+      initial={{ translateX: 20 }}
+      animate={{ translateX: 0 }} className="accountOutlet" >
       <div className="headerEdit">
         <p className="outletHeader">Settings</p>
         {loading ? (
@@ -214,6 +217,6 @@ export default function Settings() {
           </form>
         </div>
       </ul>
-    </div>
+    </motion.div>
   );
 }

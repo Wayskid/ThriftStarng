@@ -67,6 +67,7 @@ export function AppProvider({
           price: data.price,
           color: data.color,
           size: data.size,
+          stockCount: data.stockCount,
           qty,
         },
       });

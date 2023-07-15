@@ -93,6 +93,7 @@ export default function Account() {
                 className="accountImgInput"
                 id="accountImg"
                 onChange={(e) => setImgUpload(e.target.files)}
+                accept="image/*"
               />
             </div>
             <p className="userName">{state.userInfo.name}</p>

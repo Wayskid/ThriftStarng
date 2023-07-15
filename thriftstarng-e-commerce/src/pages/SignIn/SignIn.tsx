@@ -1,9 +1,16 @@
 import "./signIn.scss";
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  ErrorInfo,
+  FormEvent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import AppContext from "../../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import AppButton from "../../components/appButton/AppButton";
 import AppInput from "../../components/appInput/AppInput";
 
@@ -11,6 +18,7 @@ export default function SignIn() {
   const { state, dispatch } = useContext(AppContext);
   const { signInInputs } = state;
   const [loading, setLoading] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   //Page title
   useEffect(() => {
@@ -18,7 +26,9 @@ export default function SignIn() {
       type: REDUCER_ACTION_TYPES.PAGE_TITLE,
       payload: "Sign In - ThriftStarng",
     });
-  }, [state.pageTitle]);
+
+    loading && setErrMsg("");
+  }, [state.pageTitle, loading]);
 
   //SignIn
   async function signIn(e: FormEvent) {
@@ -45,7 +55,9 @@ export default function SignIn() {
       dispatch({ type: REDUCER_ACTION_TYPES.GET_TOKEN, payload: data.token });
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      if (error instanceof AxiosError) {
+        setErrMsg(error?.response?.data);
+      }
       setLoading(false);
     }
   }
@@ -98,6 +110,9 @@ export default function SignIn() {
               showHidePass={true}
             />
           </div>
+          {errMsg && (
+            <p style={{ color: "red", marginInline: "auto" }}>{errMsg}</p>
+          )}
           <AppButton
             version={"primaryBtn"}
             label={"Sign In"}

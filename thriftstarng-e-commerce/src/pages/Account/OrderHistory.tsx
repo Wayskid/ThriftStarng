@@ -6,6 +6,7 @@ import { OrderInfoTypes } from "../../Types";
 import AppButton from "../../components/appButton/AppButton";
 import AppContext from "../../contexts/AppContext";
 import AccountLoader from "../../components/skeletonLoaders/AccountLoader";
+import { motion } from "framer-motion";
 
 export default function OrderHistory() {
   const [orderHistory, setOrderHistory] = useState<OrderInfoTypes[]>([]);
@@ -13,43 +14,46 @@ export default function OrderHistory() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  //Get user orders
-  async function getUserOrders() {
-    try {
-      setLoading(true);
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${state.token}`,
-        },
-      };
-
-      const { data } = await axios.get(
-        `https://thriftstarng.onrender.com/api/orders/user/${state.userInfo._id}`,
-        config
-      );
-
-      setOrderHistory(data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
+    //Get user orders
+    async function getUserOrders() {
+      try {
+        setLoading(true);
+
+        const config = {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        };
+
+        const { data } = await axios.get(
+          `https://thriftstarng.onrender.com/api/orders/user/${state.userInfo._id}`,
+          config
+        );
+
+        setOrderHistory(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    }
+
     getUserOrders();
   }, []);
 
   return (
-    <div className="accountOutlet">
+    <motion.div
+      initial={{ translateX: 20 }}
+      animate={{ translateX: 0 }}
+      className="accountOutlet"
+    >
       <div className="headerEdit">
         <p className="outletHeader">Order history</p>
       </div>
       <ul className="infoList">
-        {loading ? (
-          orderHistory &&
-          orderHistory.map((order) => (
+        {!loading ? (
+          orderHistory?.map((order) => (
             <div className="info orderHistInfo" key={order._id}>
               <div className="infoFlex">
                 <p className="infoTitle">ID: ...{order._id.slice(15)}</p>
@@ -77,12 +81,12 @@ export default function OrderHistory() {
         ) : (
           <AccountLoader />
         )}
-        {!loading && !orderHistory && (
+        {!loading && orderHistory.length === 0 && (
           <p className="noOrderYet">
             You don't have any order yet. <Link to="/">View products</Link>
           </p>
         )}
       </ul>
-    </div>
+    </motion.div>
   );
 }

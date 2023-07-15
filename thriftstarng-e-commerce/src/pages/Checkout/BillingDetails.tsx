@@ -3,9 +3,9 @@ import AppContext from "../../contexts/AppContext";
 import axios from "axios";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import GiftBillingDetails from "./GiftBillingDetails";
-import { ComboBox, Item } from "../../components/react-aria/MySelect";
 import AppInput from "../../components/appInput/AppInput";
 import AppButton from "../../components/appButton/AppButton";
+import AppInputSelect from "../../components/appInput/AppInputSelect";
 
 export default function BillingDetails() {
   const { state, dispatch, handleBillingDetails } = useContext(AppContext);
@@ -85,23 +85,19 @@ export default function BillingDetails() {
             label="Phone"
           />
         </div>
-        <ComboBox
+        <AppInputSelect
+          list={state.countryList}
+          value={state.billingDetails.country}
           label="Country / Region"
           name="Country"
-          selectedKey={state.billingDetails.country}
-          onSelectionChange={(key) =>
+          onChange={(e) =>
             dispatch({
               type: REDUCER_ACTION_TYPES.BILLING_DETAILS,
               field: "country",
-              payload: key,
+              payload: e.target.value,
             })
           }
-        >
-          {state.countryList &&
-            state.countryList.map((country) => {
-              return <Item key={country}>{country}</Item>;
-            })}
-        </ComboBox>
+        />
         <AppInput
           type="text"
           id="address"

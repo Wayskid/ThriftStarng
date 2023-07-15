@@ -10,6 +10,7 @@ import AppButton from "../../components/appButton/AppButton";
 import AppInput from "../../components/appInput/AppInput";
 import AppContext from "../../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
+import { motion } from "framer-motion";
 
 export default function PersonalInfo() {
   const { state, dispatch } = useContext(AppContext);
@@ -57,7 +58,9 @@ export default function PersonalInfo() {
   }
 
   return (
-    <div className="accountOutlet">
+    <motion.div
+      initial={{ translateX: 20 }}
+      animate={{ translateX: 0 }} className="accountOutlet">
       <div className="headerEdit">
         <p className="outletHeader">Personal Info</p>
         {loading ? (
@@ -164,6 +167,6 @@ export default function PersonalInfo() {
           )}
         </div>
       </ul>
-    </div>
+    </motion.div>
   );
 }

@@ -1,10 +1,12 @@
 import "../sassStyles/cartItem.scss";
 import { BsXCircleFill } from "react-icons/bs";
 import { CartType } from "../Types";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AppContext from "../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../reducers/ReducerActionsTypes";
 import AppButton from "./appButton/AppButton";
+import AppInputSelect from "./appInput/AppInputSelect";
+import { useNavigate } from "react-router-dom";
 
 export default function CartItem({
   cartItem,
@@ -13,23 +15,47 @@ export default function CartItem({
 }: {
   cartItem: CartType;
   showBtn: boolean;
-  version: "cart" | "wish";
+  version: "cart" | "wish" | "orderInfo";
 }) {
   const { dispatch, addToCart } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const [itemQty, setItemQty] = useState(cartItem.qty);
 
   return (
     <li className="cartItem">
-      <div className="imgWrap">
-        <img src={cartItem.image} alt="gown" className="cartItemImg" />
+      <img src={cartItem.image} alt="gown" className="cartItemImg" />
+      <h4 className="cartItemName">{cartItem.name}</h4>
+      <div className="qtyST">
+        <small>QTY:</small>
+        {version === "cart" ? (
+          <AppInputSelect
+            version="stock"
+            list={[...Array(cartItem.stockCount).keys()]}
+            value={itemQty.toString()}
+            name="qty"
+            onChange={(e) => {
+              setItemQty(Number(e.target.value));
+              dispatch({
+                type: REDUCER_ACTION_TYPES.UPDATE_CART,
+                payload: { key: cartItem.product, value: e.target.value },
+              });
+            }}
+          />
+        ) : (
+          <p>{cartItem.qty}</p>
+        )}
       </div>
-      <h4 className="name">{cartItem.name}</h4>
-      {version === "cart" ? (
-        <div className="qtyST">
-          <small>QTY:</small>
-          <b>{cartItem.qty}</b>
-        </div>
-      ) : null}
-      <b>#{(cartItem.qty * cartItem.price).toLocaleString("en-US")}</b>
+      <b className="cartItemPrice">
+        #{(itemQty * cartItem.price).toLocaleString("en-US")}
+      </b>
+      {version === "orderInfo" && (
+        <AppButton
+          onClick={() => navigate(`/products/${cartItem.product}`)}
+          version="primaryBtn"
+          label="View Item"
+        />
+      )}
       {version === "wish" ? (
         <AppButton
           version="primaryBtn"

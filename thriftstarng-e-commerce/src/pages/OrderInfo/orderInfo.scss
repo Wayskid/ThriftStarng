@@ -46,7 +46,7 @@
       display: grid;
       justify-items: center;
       box-shadow: 0px 2px 5px -2px grey;
-      padding-inline: 2rem;
+      padding-inline: 1rem;
       padding-top: 1rem;
 
       .orderInfoListHeader {
@@ -109,7 +109,7 @@
       display: grid;
       justify-items: center;
       box-shadow: 0px 2px 5px -2px grey;
-      padding-inline: 2rem;
+      padding-inline: 1rem;
       padding-top: 1rem;
 
       .orderInfoListHeader {
@@ -125,13 +125,25 @@
         }
       }
 
-      .orderInfoListTotal {
-        padding: 0.8rem 1.5rem 0.6rem 0;
+      .orderInfoListTotals {
+        padding: 0.8rem 0.5rem 0.6rem 0;
         width: min(60rem, 100%);
         text-align: right;
+        display: grid;
+        gap: 0.3rem;
 
-        @include desktop {
-          text-align: right;
+        div {
+          display: flex;
+          justify-self: right;
+          gap: 1rem;
+          justify-content: space-between;
+          &>*{
+            width: 10rem;
+          }
+        }
+
+        .total{
+          font-size: 25px;
         }
       }
     }

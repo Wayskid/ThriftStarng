@@ -80,16 +80,7 @@ export default function CartMenu() {
         <ul className="cartMenuList">
           {state.cartList.map((cartItem, index) => {
             return (
-              <li
-                key={index}
-                className="cartMenuItem"
-                onClick={() =>
-                  dispatch({
-                    type: REDUCER_ACTION_TYPES.DELETE_FROM_CART,
-                    payload: cartItem.product,
-                  })
-                }
-              >
+              <li key={index} className="cartMenuItem">
                 <div className="imgWrap">
                   <img
                     src={cartItem.image}
@@ -107,7 +98,15 @@ export default function CartMenu() {
                     </h4>
                   </div>
                 </div>
-                <button className="deleteCartMenuItemBtn">
+                <button
+                  className="deleteCartMenuItemBtn"
+                  onClick={() =>
+                    dispatch({
+                      type: REDUCER_ACTION_TYPES.DELETE_FROM_CART,
+                      payload: cartItem.product,
+                    })
+                  }
+                >
                   <BsX />
                 </button>
               </li>

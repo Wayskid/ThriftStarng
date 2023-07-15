@@ -32,7 +32,7 @@ function App() {
   const { state } = useContext(AppContext);
 
   return (
-    <div className="App">
+    <div className="app">
       {/* <ScrollToTop /> */}
       <Nav />
       <Routes>
