@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import AppContext from "../../contexts/AppContext";
 import { REDUCER_ACTION_TYPES } from "../../reducers/ReducerActionsTypes";
 import { useParams } from "react-router-dom";
-import { INITIAL_STATE } from "../../reducers/InitialState";
 import axios, { AxiosError } from "axios";
 import AppButton from "../../components/appButton/AppButton";
 import { ProductType } from "../../Types";

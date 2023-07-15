@@ -1,7 +1,6 @@
 import "./signIn.scss";
 import {
   ChangeEvent,
-  ErrorInfo,
   FormEvent,
   useContext,
   useEffect,
